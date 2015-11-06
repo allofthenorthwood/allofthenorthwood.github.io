@@ -18,8 +18,9 @@
     "webpack-dev-server": "^1.8.0"
   },
   "dependencies": {
-    "react": "^0.13.1",
-    "react-art": "^0.13.0",
-    "underscore": "^1.8.3"
+    "aphrodite": "0.0.1",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "simple-markdown": "0.0.5"
   }
 }
