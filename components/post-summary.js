@@ -43,8 +43,8 @@ const PostSummary = React.createClass({
         <div className={css(ST.postContent)}>
           <PostContent markdownContent={content.split("\n\n")[0]} />
         </div>
+        <Link className={css(ST.link)} to={`/post/${slug}`}>Read more</Link>
       </div>
-      <Link to={`/post/${slug}`}>Read more</Link>
     </div>;
   },
 });
@@ -76,6 +76,7 @@ const ST = StyleSheet.create({
     margin: "0 auto",
     maxWidth: SS.layout.maxWidth,
   },
+  link: SS.link,
 });
 
 module.exports = PostSummary;

@@ -57,24 +57,7 @@ const Post = React.createClass({
 });
 
 const ST = StyleSheet.create({
-  link: {
-    color: SS.color.grey,
-    fontFamily: SS.font.sansFamily,
-    fontSize: SS.font.smallSize,
-    textDecoration: "none",
-    ":hover": {
-      color: SS.color.black,
-    },
-    ":focus": {
-
-    },
-    ":active": {
-
-    },
-    ":visited": {
-
-    },
-  },
+  link: SS.link,
   header: {
     margin: "0 auto",
     maxWidth: SS.layout.maxWidth,
