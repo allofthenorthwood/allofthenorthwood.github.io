@@ -11,32 +11,24 @@ import SS from "../styles/shared.js";
 
 import PostContent from "./post-content.js";
 
-const Post = React.createClass({
+const PostSummary = React.createClass({
   propTypes: {
-    posts: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        content: React.PropTypes.string.isRequired,
-        title: React.PropTypes.string.isRequired,
-      })
-    ),
+    post: React.PropTypes.shape({
+      content: React.PropTypes.string.isRequired,
+      slug: React.PropTypes.string.isRequired,
+      title: React.PropTypes.string.isRequired,
+    }),
   },
 
   render: function () {
-    const post = this.props.posts.find((post) => {
-      return post.slug === this.props.params.slug;
-    });
-    if (post == null) {
-      return <div>404</div>;
-    }
     const {
       content,
+      slug,
       title,
-    } = post;
+    } = this.props.post;
+
     return <div>
       <div className={css(ST.header)}>
-        <Link className={css(ST.link)} to={"/"}>
-          &lsaquo; Home
-        </Link>
         <div className={css(ST.headerContent)}>
           <h1 className={css(ST.title)}>
             Title of this Blog Post
@@ -49,48 +41,31 @@ const Post = React.createClass({
 
       <div className={css(ST.post)}>
         <div className={css(ST.postContent)}>
-          <PostContent markdownContent={content} />
+          <PostContent markdownContent={content.split("\n\n")[0]} />
         </div>
       </div>
+      <Link to={`/post/${slug}`}>Read more</Link>
     </div>;
   },
 });
 
 const ST = StyleSheet.create({
-  link: {
-    color: SS.color.grey,
-    fontFamily: SS.font.sansFamily,
-    fontSize: SS.font.smallSize,
-    textDecoration: "none",
-    ":hover": {
-      color: SS.color.black,
-    },
-    ":focus": {
-
-    },
-    ":active": {
-
-    },
-    ":visited": {
-
-    },
-  },
   header: {
+    padding: `100px ${SS.layout.padding}px 20px`,
+  },
+  headerContent: {
     margin: "0 auto",
     maxWidth: SS.layout.maxWidth,
-    padding: `0 ${SS.layout.padding}px 20px`,
+    textAlign: "center",
   },
   title: {
     fontSize: SS.font.largeSize,
     lineHeight: SS.font.largeLineHeight,
-    paddingTop: 80,
-    textAlign: "center",
   },
   date: {
     color: SS.color.grey,
     fontFamily: SS.font.sansFamily,
     fontSize: SS.font.smallSize,
-    textAlign: "center",
     textTransform: "uppercase",
   },
   post: {
@@ -103,4 +78,4 @@ const ST = StyleSheet.create({
   },
 });
 
-module.exports = Post;
+module.exports = PostSummary;
