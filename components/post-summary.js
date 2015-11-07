@@ -51,7 +51,7 @@ const PostSummary = React.createClass({
 
 const ST = StyleSheet.create({
   header: {
-    padding: `100px ${SS.layout.padding}px 20px`,
+    padding: `123px ${SS.layout.padding}px 30px`,
   },
   headerContent: {
     margin: "0 auto",

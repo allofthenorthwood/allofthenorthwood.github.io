@@ -20,6 +20,7 @@
   "dependencies": {
     "aphrodite": "0.0.1",
     "react": "^0.14.0",
+    "react-art": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-router": "^0.13.5",
     "simple-markdown": "0.0.5"

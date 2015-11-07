@@ -9,6 +9,7 @@ const Link = Router.Link;
 
 import SS from "../styles/shared.js";
 
+import Icon from "./icon.js";
 import PostContent from "./post-content.js";
 
 const Post = React.createClass({
@@ -35,7 +36,14 @@ const Post = React.createClass({
     return <div>
       <div className={css(ST.header)}>
         <Link className={css(ST.link)} to={"/"}>
-          &lsaquo; Home
+          <span className={css(ST.icon)}>
+            <Icon
+              color={SS.link.color}
+              type="angleBracketLeft"
+              size={SS.link.fontSize - 2}
+            />
+          </span>
+          <span className={css(ST.linkText)}>Home</span>
         </Link>
         <div className={css(ST.headerContent)}>
           <h1 className={css(ST.title)}>
@@ -57,16 +65,28 @@ const Post = React.createClass({
 });
 
 const ST = StyleSheet.create({
-  link: SS.link,
+  link: {
+    ...SS.link,
+    display: "inline-block",
+    height: 30,
+  },
+  linkText: {
+    verticalAlign: "top",
+  },
+  icon: {
+    display: "inline-block",
+    marginRight: 6,
+    marginTop: 1,
+  },
   header: {
-    margin: "0 auto",
+    margin: "20px auto 60px",
     maxWidth: SS.layout.maxWidth,
-    padding: `0 ${SS.layout.padding}px 20px`,
+    padding: `0 ${SS.layout.padding}px`,
   },
   title: {
     fontSize: SS.font.largeSize,
     lineHeight: SS.font.largeLineHeight,
-    paddingTop: 80,
+    paddingTop: 70,
     textAlign: "center",
   },
   date: {
