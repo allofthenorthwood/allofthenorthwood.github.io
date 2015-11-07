@@ -6,72 +6,68 @@ import { StyleSheet, css } from "../lib/aphrodite.js";
 
 import SS from "../styles/shared.js";
 
+import PostContent from "./post-content.js";
+
 const Post = React.createClass({
   propTypes: {
-    post: React.PropTypes.string,
+    post: React.PropTypes.shape({
+      content: React.PropTypes.string,
+      title: React.PropTypes.string,
+    }),
   },
+
   render: function () {
     const {
-      post,
-    } = this.props;
-
-    const elements = [
-      "em",
-      "paragraph",
-      "strong",
-    ];
-    const newRules = elements.reduce((acc, element) => {
-      return newAcc = {
-        ...acc,
-        [element]: {
-          ...SimpleMarkdown.defaultRules[element],
-          ...{
-            react: (node, output, state) => {
-              return <div
-                className={css(ST[element])}
-                key={state.key}
-              >
-                {output(node.content, state)}
-              </div>;
-            },
-          },
-        },
-      };
-    }, {});
-
-    const rules = {
-      ...SimpleMarkdown.defaultRules,
-      ...newRules,
-    };
-
-    const rawBuiltParser = SimpleMarkdown.parserFor(rules);
-    const parse = function(source) {
-        const blockSource = source + "\n\n";
-        return rawBuiltParser(blockSource, {inline: false});
-    };
-
-    const mdOutput = SimpleMarkdown.reactFor(
-      SimpleMarkdown.ruleOutput(rules, 'react'));
-
-    const syntaxTree = parse(post);
+      title,
+      content,
+    } = this.props.post;
 
     return <div>
-      {mdOutput(syntaxTree)}
+      <div className={css(ST.header)}>
+        <div className={css(ST.headerContent)}>
+          <h1 className={css(ST.title)}>
+            Title of this Blog Post
+          </h1>
+          <div className={css(ST.date)}>
+            Tuesday Nov 5, 2015
+          </div>
+        </div>
+      </div>
+
+      <div className={css(ST.post)}>
+        <div className={css(ST.postContent)}>
+          <PostContent markdownContent={content} />
+        </div>
+      </div>
     </div>;
   },
 });
 
 const ST = StyleSheet.create({
-  em: {
-    display: "inline",
-    fontStyle: "italic",
+  header: {
+    padding: `100px ${SS.layout.padding}px 20px`,
   },
-  paragraph: {
-    marginBottom: "1em",
+  headerContent: {
+    margin: "0 auto",
+    maxWidth: SS.layout.maxWidth,
+    textAlign: "center",
   },
-  strong: {
-    display: "inline",
-    fontWeight: 700,
+  title: {
+    fontSize: SS.font.largeSize,
+  },
+  date: {
+    color: SS.color.grey,
+    fontFamily: SS.font.sansFamily,
+    fontSize: SS.font.smallSize,
+    marginTop: 5,
+    textTransform: "uppercase",
+  },
+  post: {
+    padding: `0 ${SS.layout.padding}px`,
+  },
+  postContent: {
+    margin: "0 auto",
+    maxWidth: SS.layout.maxWidth,
   },
 });
 

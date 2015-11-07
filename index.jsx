@@ -8,28 +8,32 @@ import Blog from "./components/blog.js";
 const App = React.createClass({
   getInitialState: function() {
     return {
-      posts: [],
+      posts: [
+        {
+          title: 'Title of this Blog Post',
+          url: '../posts/fake.md',
+        },
+        {
+          title: 'Another Fake Post',
+          url: '../posts/anotherfake.md',
+        },
+      ],
     };
   },
   componentDidMount: function() {
-    const posts = [
-      {
-        title: 'Title of this Blog Post',
-        url: '../posts/fake.md',
-      },
-      {
-        title: 'Another Fake Post',
-        url: '../posts/anotherfake.md',
-      },
-    ];
+    const posts = this.state.posts;
+
     posts.forEach((post, idx) => {
       const client = new XMLHttpRequest();
       client.open('GET', post.url);
       client.onreadystatechange = () => {
         const responseText = client.responseText;
-        if (responseText.length > 0) {
-          const curPosts = this.state.posts.slice();
-          curPosts[idx] = responseText;
+        const curPosts = this.state.posts.slice();
+        if (responseText.length > 0 && curPosts[idx].content == null) {
+          curPosts[idx] = {
+            ...curPosts[idx],
+            content: responseText,
+          };
           this.setState({
             posts: curPosts,
           });
@@ -43,11 +47,10 @@ const App = React.createClass({
       posts,
     } = this.state;
 
-    if (posts.length === 0) {
-      // not loaded
+    if (!posts.every((post) => { return post.content; })) {
+      // Still Loading....
       return <div></div>;
     }
-
     return <Blog posts={posts} />;
   },
 });
