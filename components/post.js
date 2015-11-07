@@ -54,18 +54,19 @@ const ST = StyleSheet.create({
   },
   title: {
     fontSize: SS.font.largeSize,
+    lineHeight: SS.font.largeLineHeight,
   },
   date: {
     color: SS.color.grey,
     fontFamily: SS.font.sansFamily,
     fontSize: SS.font.smallSize,
-    marginTop: 5,
     textTransform: "uppercase",
   },
   post: {
     padding: `0 ${SS.layout.padding}px`,
   },
   postContent: {
+    fontSize: SS.font.contentSize,
     margin: "0 auto",
     maxWidth: SS.layout.maxWidth,
   },

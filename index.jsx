@@ -3,19 +3,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Blog from "./components/blog.js";
+import Navigation from "./components/navigation.js";
 
 const App = React.createClass({
   getInitialState: function() {
     return {
       posts: [
         {
-          title: 'Title of this Blog Post',
-          url: '../posts/fake.md',
+          title: "Title of this Blog Post",
+          url: "../posts/fake.md",
         },
         {
-          title: 'Another Fake Post',
-          url: '../posts/anotherfake.md',
+          title: "Another Fake Post",
+          url: "../posts/anotherfake.md",
         },
       ],
     };
@@ -25,7 +25,7 @@ const App = React.createClass({
 
     posts.forEach((post, idx) => {
       const client = new XMLHttpRequest();
-      client.open('GET', post.url);
+      client.open("GET", post.url);
       client.onreadystatechange = () => {
         const responseText = client.responseText;
         const curPosts = this.state.posts.slice();
@@ -43,15 +43,7 @@ const App = React.createClass({
     });
   },
   render: function () {
-    const {
-      posts,
-    } = this.state;
-
-    if (!posts.every((post) => { return post.content; })) {
-      // Still Loading....
-      return <div></div>;
-    }
-    return <Blog posts={posts} />;
+    return <Navigation posts={this.state.posts} />;
   },
 });
 

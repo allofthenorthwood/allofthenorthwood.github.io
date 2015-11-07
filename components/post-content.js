@@ -49,7 +49,7 @@ const PostContent = React.createClass({
     };
 
     const mdOutput = SimpleMarkdown.reactFor(
-      SimpleMarkdown.ruleOutput(rules, 'react'));
+      SimpleMarkdown.ruleOutput(rules, "react"));
 
     const syntaxTree = parse(markdownContent);
 
@@ -65,7 +65,7 @@ const ST = StyleSheet.create({
     fontStyle: "italic",
   },
   paragraph: {
-    marginBottom: "1em",
+    marginTop: "1.5em",
   },
   strong: {
     display: "inline",

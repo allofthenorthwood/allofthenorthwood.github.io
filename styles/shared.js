@@ -7,12 +7,14 @@ module.exports = {
   font: {
     serifFamily: "Lora, serif",
     sansFamily: "Lato, sans-serif",
-    largeSize: 30,
+    largeSize: 50,
+    largeLineHeight: 1.2,
+    contentSize: 20,
     smallSize: 12,
     lineHeight: 1.6,
   },
   layout: {
-    maxWidth: 800,
+    maxWidth: 700,
     padding: 20,
   },
 };
