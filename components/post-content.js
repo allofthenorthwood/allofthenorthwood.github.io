@@ -25,15 +25,13 @@ const PostContent = React.createClass({
         ...acc,
         [element]: {
           ...SimpleMarkdown.defaultRules[element],
-          ...{
-            react: (node, output, state) => {
-              return <div
-                className={css(ST[element])}
-                key={state.key}
-              >
-                {output(node.content, state)}
-              </div>;
-            },
+          react: (node, output, state) => {
+            return <div
+              className={css(ST[element])}
+              key={state.key}
+            >
+              {output(node.content, state)}
+            </div>;
           },
         },
       };
