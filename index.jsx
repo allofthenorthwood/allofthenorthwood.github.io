@@ -8,22 +8,47 @@ import Blog from "./components/blog.js";
 const App = React.createClass({
   getInitialState: function() {
     return {
-      post: "",
+      posts: [],
     };
   },
   componentDidMount: function() {
-    // TODO: get all posts
-    var client = new XMLHttpRequest();
-    client.open('GET', '../posts/fake.md');
-    client.onreadystatechange = () => {
-      this.setState({
-        post: client.responseText
-      });
-    };
-    client.send();
+    const posts = [
+      {
+        title: 'Title of this Blog Post',
+        url: '../posts/fake.md',
+      },
+      {
+        title: 'Another Fake Post',
+        url: '../posts/anotherfake.md',
+      },
+    ];
+    posts.forEach((post, idx) => {
+      const client = new XMLHttpRequest();
+      client.open('GET', post.url);
+      client.onreadystatechange = () => {
+        const responseText = client.responseText;
+        if (responseText.length > 0) {
+          const curPosts = this.state.posts.slice();
+          curPosts[idx] = responseText;
+          this.setState({
+            posts: curPosts,
+          });
+        }
+      };
+      client.send();
+    });
   },
   render: function () {
-    return <Blog post={this.state.post} />;
+    const {
+      posts,
+    } = this.state;
+
+    if (posts.length === 0) {
+      // not loaded
+      return <div></div>;
+    }
+
+    return <Blog posts={posts} />;
   },
 });
 

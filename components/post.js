@@ -11,7 +11,9 @@ const Post = React.createClass({
     post: React.PropTypes.string,
   },
   render: function () {
-    console.log('rendering')
+    const {
+      post,
+    } = this.props;
 
     const elements = [
       "em",
@@ -51,7 +53,7 @@ const Post = React.createClass({
     const mdOutput = SimpleMarkdown.reactFor(
       SimpleMarkdown.ruleOutput(rules, 'react'));
 
-    const syntaxTree = parse(this.props.post);
+    const syntaxTree = parse(post);
 
     return <div>
       {mdOutput(syntaxTree)}

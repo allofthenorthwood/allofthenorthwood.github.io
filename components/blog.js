@@ -9,25 +9,38 @@ import SS from "../styles/shared.js";
 import Post from "./post.js";
 
 const Blog = React.createClass({
+  propTypes: {
+    posts: React.PropTypes.arrayOf(
+      React.PropTypes.string,
+    ),
+  },
+
   render: function () {
+    const {
+      posts,
+    } = this.props;
     return <div className={css(ST.blog)}>
 
-      <div className={css(ST.header)}>
-        <div className={css(ST.headerContent)}>
-          <h1 className={css(ST.title)}>
-            Title of this Blog Post
-          </h1>
-          <div className={css(ST.date)}>
-            Tuesday Nov 5, 2015
+      {posts.map((post, idx) => {
+        return <div key={`post-${idx}`}>
+          <div className={css(ST.header)}>
+            <div className={css(ST.headerContent)}>
+              <h1 className={css(ST.title)}>
+                Title of this Blog Post
+              </h1>
+              <div className={css(ST.date)}>
+                Tuesday Nov 5, 2015
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <div className={css(ST.post)}>
-        <div className={css(ST.postContent)}>
-          <Post post={this.props.post} />
-        </div>
-      </div>
+          <div className={css(ST.post)}>
+            <div className={css(ST.postContent)}>
+              <Post post={post} />
+            </div>
+          </div>
+        </div>;
+      })}
 
     </div>;
   },
