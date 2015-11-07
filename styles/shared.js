@@ -9,6 +9,7 @@ module.exports = {
     sansFamily: "Lato, sans-serif",
     largeSize: 30,
     smallSize: 12,
+    lineHeight: 1.6,
   },
   layout: {
     maxWidth: 800,

@@ -6,12 +6,10 @@ import { StyleSheet, css } from "../lib/aphrodite.js";
 
 import SS from "../styles/shared.js";
 
+import Post from "./post.js";
+
 const Blog = React.createClass({
   render: function () {
-    var mdParse = SimpleMarkdown.defaultBlockParse;
-    var mdOutput = SimpleMarkdown.defaultOutput;
-
-    var syntaxTree = mdParse(this.props.post);
     return <div className={css(ST.blog)}>
 
       <div className={css(ST.header)}>
@@ -27,7 +25,7 @@ const Blog = React.createClass({
 
       <div className={css(ST.post)}>
         <div className={css(ST.postContent)}>
-          {mdOutput(syntaxTree)}
+          <Post post={this.props.post} />
         </div>
       </div>
 
@@ -39,6 +37,7 @@ const ST = StyleSheet.create({
   blog: {
     color: SS.color.black,
     fontFamily: SS.font.serifFamily,
+    lineHeight: SS.font.lineHeight,
   },
   header: {
     padding: `100px ${SS.layout.padding}px 20px`,
@@ -64,6 +63,11 @@ const ST = StyleSheet.create({
   postContent: {
     margin: "0 auto",
     maxWidth: SS.layout.maxWidth,
+  },
+
+  // Markdown formatting
+  em: {
+    fontStyle: "italic",
   },
 });
 
