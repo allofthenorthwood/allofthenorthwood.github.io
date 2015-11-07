@@ -28,18 +28,13 @@ const PostSummary = React.createClass({
     } = this.props.post;
 
     return <div>
-      <div className={css(ST.header)}>
-        <div className={css(ST.headerContent)}>
-          <h1 className={css(ST.title)}>
-            Title of this Blog Post
-          </h1>
-          <div className={css(ST.date)}>
-            Tuesday Nov 5, 2015
-          </div>
-        </div>
-      </div>
-
       <div className={css(ST.post)}>
+        <h1 className={css(ST.title)}>
+          Title of this Blog Post
+        </h1>
+        <div className={css(ST.date)}>
+          Tuesday Nov 5, 2015
+        </div>
         <div className={css(ST.postContent)}>
           <PostContent markdownContent={content.split("\n\n")[0]} />
         </div>
@@ -50,22 +45,16 @@ const PostSummary = React.createClass({
 });
 
 const ST = StyleSheet.create({
-  header: {
-    padding: `123px ${SS.layout.padding}px 30px`,
-  },
-  headerContent: {
-    margin: "0 auto",
-    maxWidth: SS.layout.maxWidth,
-    textAlign: "center",
-  },
   title: {
-    fontSize: SS.font.largeSize,
+    fontSize: SS.font.lessLargeSize,
     lineHeight: SS.font.largeLineHeight,
+    textAlign: "center",
   },
   date: {
     color: SS.color.grey,
     fontFamily: SS.font.sansFamily,
     fontSize: SS.font.smallSize,
+    textAlign: "center",
     textTransform: "uppercase",
   },
   post: {

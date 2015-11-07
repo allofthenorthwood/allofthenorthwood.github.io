@@ -1,12 +1,14 @@
 const color = {
   black: "#333",
   grey: "#999",
+  greyLight: "#ccc",
   white: "#fff",
 };
 const font = {
   serifFamily: "Lora, serif",
   sansFamily: "Lato, sans-serif",
   largeSize: 50,
+  lessLargeSize: 30,
   largeLineHeight: 1.2,
   contentSize: 20,
   smallSize: 12,
