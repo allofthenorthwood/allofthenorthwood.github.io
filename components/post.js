@@ -47,7 +47,7 @@ const Post = React.createClass({
         </Link>
         <div className={css(ST.headerContent)}>
           <h1 className={css(ST.title)}>
-            Title of this Blog Post
+            {title}
           </h1>
           <div className={css(ST.date)}>
             Tuesday Nov 5, 2015
