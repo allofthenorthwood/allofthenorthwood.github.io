@@ -24,6 +24,10 @@ const App = React.createClass({
           title: "Undertale",
           slug: "2015-11-07-undertale",
           url: "../posts/undertale.md",
+          tags: [
+            "no spoilers",
+            "drawings",
+          ],
         },
       ],
     };

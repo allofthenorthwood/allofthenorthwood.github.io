@@ -25,6 +25,7 @@ const PostSummary = React.createClass({
     const {
       content,
       slug,
+      tags,
       title,
     } = this.props.post;
 
@@ -40,6 +41,17 @@ const PostSummary = React.createClass({
         </div>
         <div className={css(ST.postContent)}>
           <PostContent markdownContent={content.split("\n\n")[0]} />
+
+          <div className={css(ST.tags)}>
+            {tags.map((tag, idx) => {
+              return <span
+                className={css(ST.tag)}
+                key={`tag-${idx}`}
+              >
+                #{tag}
+              </span>;
+            })}
+          </div>
 
           <div className={css(ST.postLink)}>
             <Link className={css(ST.link)} to={`/post/${slug}`}>
@@ -103,6 +115,14 @@ const ST = StyleSheet.create({
     display: "inline-block",
     marginLeft: 2,
     marginTop: 1,
+  },
+  tags: {
+    ...SS.accentText,
+    marginTop: 20,
+    textAlign: "center",
+  },
+  tag: {
+    marginRight: 10,
   },
 });
 
