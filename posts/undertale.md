@@ -13,3 +13,5 @@ Give the player the choice to be non-violent and you shift the entire playing fi
 This changed how I think about video games. Even games that minimize gore, where you simply wave your sword and the monster vanishes in a fountain of XP and loot, are tainted by this feeling that I'm dong something wrong. That I could be making a better choice.
 
 Play [Undertale](http://undertale.com).
+
+![Sans ruffling the player character's hair, and saying "make good choices, kiddo"](../images/sans-frisk.jpg "" 400)
