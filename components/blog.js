@@ -21,6 +21,7 @@ const Blog = React.createClass({
       <div className={css(ST.header)}>
         <img
           src="../images/trees.jpg"
+          alt=""
           className={css(ST.headerImage)}
         />
         <h1 className={css(ST.title)}>

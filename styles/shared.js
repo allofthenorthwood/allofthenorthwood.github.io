@@ -1,6 +1,6 @@
 const color = {
   black: "#333",
-  grey: "#bbb",
+  grey: "#aaa",
   greyLight: "#ccc",
   white: "#fff",
 
@@ -14,7 +14,7 @@ const font = {
   lessLargeSize: 30,
   largeLineHeight: 1.2,
   contentSize: 20,
-  smallSize: 12,
+  smallSize: 14,
   lineHeight: 1.6,
 };
 const layout = {

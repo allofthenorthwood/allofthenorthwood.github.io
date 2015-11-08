@@ -31,11 +31,11 @@ const PostSummary = React.createClass({
 
     return <div>
       <div className={css(ST.post)}>
-        <h1 className={css(ST.title)}>
+        <h2 className={css(ST.title)}>
           <Link className={css(ST.titleLink)} to={`/post/${slug}`}>
             {title}
           </Link>
-        </h1>
+        </h2>
         <div className={css(ST.date)}>
           Tuesday Nov 5, 2015
         </div>
