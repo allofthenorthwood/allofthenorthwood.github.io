@@ -92,7 +92,7 @@ const routes = (
   </Route>
 );
 
-Router.run(routes, function(Handler, state) {
+Router.run(routes, Router.HistoryLocation, function(Handler, state) {
   const params = state.params
   ReactDOM.render(
     <Handler params={params} />,
