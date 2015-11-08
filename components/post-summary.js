@@ -9,6 +9,7 @@ const Link = Router.Link;
 
 import SS from "../styles/shared.js";
 
+import Icon from "./icon.js";
 import PostContent from "./post-content.js";
 
 const PostSummary = React.createClass({
@@ -39,11 +40,20 @@ const PostSummary = React.createClass({
         </div>
         <div className={css(ST.postContent)}>
           <PostContent markdownContent={content.split("\n\n")[0]} />
+
           <div className={css(ST.postLink)}>
             <Link className={css(ST.link)} to={`/post/${slug}`}>
-              Read more
+              <span className={css(ST.linkText)}>Read More</span>
+              <span className={css(ST.icon)}>
+                <Icon
+                  color={SS.link.color}
+                  type="angleBracketRight"
+                  size={SS.link.fontSize - 2}
+                />
+              </span>
             </Link>
           </div>
+
         </div>
       </div>
     </div>;
@@ -58,7 +68,6 @@ const ST = StyleSheet.create({
   },
   titleLink: {
     color: SS.color.black,
-    display: "block",
     textDecoration: "none",
     ":hover": {
       opacity: 0.7,
@@ -82,9 +91,21 @@ const ST = StyleSheet.create({
     margin: "0 auto",
     maxWidth: SS.layout.maxWidth,
   },
-  link: SS.link,
   postLink: {
-    textAlign: "right",
+    textAlign: "center",
+  },
+  link: {
+    ...SS.link,
+    display: "inline-block",
+    height: 30,
+  },
+  linkText: {
+    verticalAlign: "top",
+  },
+  icon: {
+    display: "inline-block",
+    marginLeft: 2,
+    marginTop: 1,
   },
 });
 
