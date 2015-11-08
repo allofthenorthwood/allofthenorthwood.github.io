@@ -20,14 +20,10 @@ const App = React.createClass({
     return {
       posts: [
         {
-          title: "Title of this Blog Post",
-          slug: "2015-11-07-fake",
-          url: "../posts/fake.md",
-        },
-        {
-          title: "Another Fake Post",
-          slug: "2015-11-05-another-fake",
-          url: "../posts/anotherfake.md",
+          date: "Saturday Nov 7, 2015",
+          title: "Undertale",
+          slug: "2015-11-07-undertale",
+          url: "../posts/undertale.md",
         },
       ],
     };
