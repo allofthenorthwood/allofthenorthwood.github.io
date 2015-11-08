@@ -1,8 +1,11 @@
 const color = {
   black: "#333",
-  grey: "#999",
+  grey: "#888",
   greyLight: "#ccc",
   white: "#fff",
+
+  green: "#778547",
+  greenLight: "#9FAE59",
 };
 const font = {
   serifFamily: "Lora, serif",
@@ -19,19 +22,19 @@ const layout = {
   padding: 20,
 };
 const link = {
-  color: color.grey,
+  color: color.greenLight,
   fontFamily: font.sansFamily,
   fontSize: font.smallSize,
   textDecoration: "none",
   textTransform: "uppercase",
   ":hover": {
-    opacity: 0.7,
+    color: color.green,
   },
   ":focus": {
-    opacity: 0.7,
+    color: color.green,
   },
   ":active": {
-    opacity: 0.7,
+    color: color.green,
   },
 };
 

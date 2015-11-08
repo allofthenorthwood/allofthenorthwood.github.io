@@ -16,22 +16,43 @@ const PostContent = React.createClass({
     } = this.props;
 
     const elements = [
-      "em",
-      "paragraph",
-      "strong",
+      {
+        type: "link",
+        Component: "a",
+      },
+      {
+        type: "em",
+        Component: "em",
+      },
+      {
+        type: "paragraph",
+        Component: "p",
+      },
+      {
+        type: "strong",
+        Component: "strong",
+      },
     ];
     const newRules = elements.reduce((acc, element) => {
+      const {
+        type,
+        Component,
+      } = element;
+
       return newAcc = {
         ...acc,
-        [element]: {
-          ...SimpleMarkdown.defaultRules[element],
+        [type]: {
+          ...SimpleMarkdown.defaultRules[type],
           react: (node, output, state) => {
-            return <div
-              className={css(ST[element])}
+            const url = type === "link" ?
+              SimpleMarkdown.sanitizeUrl(node.target) : null;
+            return <Component
+              className={css(ST[type])}
+              href={url ? url : undefined}
               key={state.key}
             >
               {output(node.content, state)}
-            </div>;
+            </Component>;
           },
         },
       };
@@ -60,15 +81,25 @@ const PostContent = React.createClass({
 });
 
 const ST = StyleSheet.create({
+  link: {
+    borderBottom: `1px solid ${SS.color.greenLight}`,
+    color: SS.color.greenLight,
+    textDecoration: "none",
+    ":hover": {
+      borderColor: SS.color.green,
+      color: SS.color.green,
+    },
+    ":focus": {
+      opacity: 0.7,
+    },
+  },
   em: {
-    display: "inline",
     fontStyle: "italic",
   },
   paragraph: {
     marginTop: "1.5em",
   },
   strong: {
-    display: "inline",
     fontWeight: 700,
   },
 });

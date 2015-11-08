@@ -67,10 +67,10 @@ const ST = StyleSheet.create({
     textAlign: "center",
   },
   titleLink: {
-    color: SS.color.black,
+    color: SS.color.greenLight,
     textDecoration: "none",
     ":hover": {
-      opacity: 0.7,
+      color: SS.color.green,
     },
     ":focus": {
       opacity: 0.7,
