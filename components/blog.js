@@ -59,7 +59,7 @@ const ST = StyleSheet.create({
     lineHeight: SS.font.largeLineHeight,
   },
   divider: {
-    borderTop: `1px solid ${SS.color.grey}`,
+    borderTop: `1px solid ${SS.color.greyLight}`,
     margin: "40px auto",
     width: 50,
   },
