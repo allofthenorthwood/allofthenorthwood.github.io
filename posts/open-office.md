@@ -1,4 +1,4 @@
-Open offices are great for feeling like you're part of a community, but can make it hard to get things done. Here I use a series of crummy drawings to show my attempt at a solution.
+Open offices are great for feeling like you're part of a community, but can make it hard to get things done. Here I use a series of silly drawings to show my attempt at a solution.
 
 ![A drawing of me standing next to a standing desk. It's not a very good drawing.](../images/open-office-step-1.jpg "Step 1: Find a standing desk" 500)
 
