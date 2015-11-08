@@ -16,7 +16,9 @@ const PostSummary = React.createClass({
   propTypes: {
     post: React.PropTypes.shape({
       content: React.PropTypes.string.isRequired,
+      date: React.PropTypes.string.isRequired,
       slug: React.PropTypes.string.isRequired,
+      tags: React.PropTypes.arrayOf(React.PropTypes.string),
       title: React.PropTypes.string.isRequired,
     }),
   },
@@ -24,6 +26,7 @@ const PostSummary = React.createClass({
   render: function () {
     const {
       content,
+      date,
       slug,
       tags,
       title,
@@ -37,7 +40,7 @@ const PostSummary = React.createClass({
           </Link>
         </h2>
         <div className={css(ST.date)}>
-          Tuesday Nov 5, 2015
+          {date}
         </div>
         <div className={css(ST.postContent)}>
           <PostContent markdownContent={content.split("\n\n")[0]} />
@@ -101,7 +104,7 @@ const ST = StyleSheet.create({
     maxWidth: SS.layout.maxWidth,
   },
   postLink: {
-    textAlign: "center",
+    textAlign: "right",
   },
   link: {
     ...SS.link,
@@ -118,7 +121,9 @@ const ST = StyleSheet.create({
   },
   tags: {
     ...SS.accentText,
-    marginTop: 20,
+    color: SS.color.greyLight,
+    float: "left",
+    marginTop: 7,
     textAlign: "center",
   },
   tag: {

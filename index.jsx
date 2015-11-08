@@ -20,6 +20,16 @@ const App = React.createClass({
     return {
       posts: [
         {
+          date: "Sunday Nov 8, 2015",
+          title: "How to get work done in an open office",
+          slug: "2015-11-08-open-office",
+          url: "../posts/open-office.md",
+          tags: [
+            "advice",
+            "drawings",
+          ],
+        },
+        {
           date: "Saturday Nov 7, 2015",
           title: "Undertale",
           slug: "2015-11-07-undertale",

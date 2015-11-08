@@ -89,6 +89,7 @@ const PostContent = React.createClass({
               className={css(ST.image)}
               src={SimpleMarkdown.sanitizeUrl(node.target)}
               width={node.width}
+              title={node.alt}
               alt={node.alt}
             />
             {node.title && <div className={css(ST.imageCaption)}>
@@ -138,9 +139,8 @@ const ST = StyleSheet.create({
     maxWidth: "100%",
   },
   imageCaption: {
-    color: SS.color.grey,
+    color: SS.color.greyDark,
     fontFamily: SS.font.sansFamily,
-    fontSize: SS.font.smallSize,
     marginTop: 10,
     textAlign: "center",
   },
