@@ -38,7 +38,15 @@ const link = {
   },
 };
 
+const accentText = {
+  color: color.grey,
+  fontFamily: font.sansFamily,
+  fontSize: font.smallSize,
+  textTransform: "uppercase",
+};
+
 module.exports = {
+  accentText: accentText,
   color: color,
   font: font,
   layout: layout,

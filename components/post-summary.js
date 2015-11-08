@@ -77,11 +77,8 @@ const ST = StyleSheet.create({
     },
   },
   date: {
-    color: SS.color.grey,
-    fontFamily: SS.font.sansFamily,
-    fontSize: SS.font.smallSize,
+    ...SS.accentText,
     textAlign: "center",
-    textTransform: "uppercase",
   },
   post: {
     padding: `0 ${SS.layout.padding}px`,

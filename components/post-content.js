@@ -26,7 +26,7 @@ const PostContent = React.createClass({
       },
       {
         type: "paragraph",
-        Component: "p",
+        Component: "div",
       },
       {
         type: "strong",
@@ -58,9 +58,45 @@ const PostContent = React.createClass({
       };
     }, {});
 
+    const LINK_INSIDE = "(?:\\[[^\\]]*\\]|[^\\]]|\\](?=[^\\[]*\\]))*";
+    const LINK_HREF_AND_TITLE_AND_SIZE =
+            "\\s*" +
+            "<?([^\\s]*?)>?" +
+            "(?:\\s+['\"]([\\s\\S]*?)['\"])?\\s*" +
+            // You can specify the width after the title (e.g. =200)
+            "(\\d+)?";
+
     const rules = {
       ...SimpleMarkdown.defaultRules,
       ...newRules,
+      image: {
+        match: SimpleMarkdown.inlineRegex(new RegExp(
+          "^!\\[(" + LINK_INSIDE + ")\\]" +
+          "\\(" + LINK_HREF_AND_TITLE_AND_SIZE + "\\)"
+        )),
+        parse: function(capture, parse, state) {
+          var image = {
+            alt: capture[1],
+            target: capture[2],
+            title: capture[3],
+            width: capture[4],
+          };
+          return image;
+        },
+        react: function(node, output, state) {
+          return <div key={state.key}>
+            <img
+              className={css(ST.image)}
+              src={SimpleMarkdown.sanitizeUrl(node.target)}
+              width={node.width}
+              alt={node.alt}
+            />
+            {node.title && <div className={css(ST.imageCaption)}>
+              {node.title}
+            </div>}
+          </div>
+        },
+      },
     };
 
     const rawBuiltParser = SimpleMarkdown.parserFor(rules);
@@ -95,6 +131,18 @@ const ST = StyleSheet.create({
   },
   em: {
     fontStyle: "italic",
+  },
+  image: {
+    display: "block",
+    margin: "0 auto",
+    maxWidth: "100%",
+  },
+  imageCaption: {
+    color: SS.color.grey,
+    fontFamily: SS.font.sansFamily,
+    fontSize: SS.font.smallSize,
+    marginTop: 10,
+    textAlign: "center",
   },
   paragraph: {
     marginTop: "1.5em",
