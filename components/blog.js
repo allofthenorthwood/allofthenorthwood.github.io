@@ -28,12 +28,14 @@ const Blog = React.createClass({
         </h1>
       </div>
 
-      {posts.map((post, idx) => {
-        return <div key={`post-${idx}`}>
-          <div className={css(ST.divider)} />
-          <PostSummary post={post} />
-        </div>;
-      })}
+      <div className={css(ST.posts)}>
+        {posts.map((post, idx) => {
+          return <div key={`post-${idx}`}>
+            <div className={css(ST.divider)} />
+            <PostSummary post={post} />
+          </div>;
+        })}
+      </div>
     </div>;
   },
 });
@@ -59,6 +61,9 @@ const ST = StyleSheet.create({
     borderTop: `1px solid ${SS.color.greyLight}`,
     margin: "40px auto",
     width: 50,
+  },
+  posts: {
+    paddingBottom: 100,
   },
 });
 

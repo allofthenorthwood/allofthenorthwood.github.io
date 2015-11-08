@@ -25,13 +25,13 @@ const link = {
   textDecoration: "none",
   textTransform: "uppercase",
   ":hover": {
-    color: color.black,
+    opacity: 0.7,
   },
   ":focus": {
-    color: color.black,
+    opacity: 0.7,
   },
   ":active": {
-    color: color.black,
+    opacity: 0.7,
   },
 };
 

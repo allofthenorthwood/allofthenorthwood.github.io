@@ -30,15 +30,21 @@ const PostSummary = React.createClass({
     return <div>
       <div className={css(ST.post)}>
         <h1 className={css(ST.title)}>
-          Title of this Blog Post
+          <Link className={css(ST.titleLink)} to={`/post/${slug}`}>
+            {title}
+          </Link>
         </h1>
         <div className={css(ST.date)}>
           Tuesday Nov 5, 2015
         </div>
         <div className={css(ST.postContent)}>
           <PostContent markdownContent={content.split("\n\n")[0]} />
+          <div className={css(ST.postLink)}>
+            <Link className={css(ST.link)} to={`/post/${slug}`}>
+              Read more
+            </Link>
+          </div>
         </div>
-        <Link className={css(ST.link)} to={`/post/${slug}`}>Read more</Link>
       </div>
     </div>;
   },
@@ -49,6 +55,17 @@ const ST = StyleSheet.create({
     fontSize: SS.font.lessLargeSize,
     lineHeight: SS.font.largeLineHeight,
     textAlign: "center",
+  },
+  titleLink: {
+    color: SS.color.black,
+    display: "block",
+    textDecoration: "none",
+    ":hover": {
+      opacity: 0.7,
+    },
+    ":focus": {
+      opacity: 0.7,
+    },
   },
   date: {
     color: SS.color.grey,
@@ -66,6 +83,9 @@ const ST = StyleSheet.create({
     maxWidth: SS.layout.maxWidth,
   },
   link: SS.link,
+  postLink: {
+    textAlign: "right",
+  },
 });
 
 module.exports = PostSummary;
