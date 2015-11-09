@@ -22,7 +22,7 @@ const App = React.createClass({
         {
           date: "Sunday Nov 8, 2015",
           title: "How to get work done in an open office",
-          slug: "2015-11-08-open-office",
+          slug: "open-office",
           url: "../posts/open-office.md",
           tags: [
             "advice",
@@ -32,7 +32,7 @@ const App = React.createClass({
         {
           date: "Saturday Nov 7, 2015",
           title: "Undertale",
-          slug: "2015-11-07-undertale",
+          slug: "undertale",
           url: "../posts/undertale.md",
           tags: [
             "no spoilers",
