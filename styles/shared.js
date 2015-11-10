@@ -11,6 +11,7 @@ const color = {
 const font = {
   serifFamily: "Lora, serif",
   sansFamily: "Lato, sans-serif",
+  monoFamily: "'Source Sans Pro', monospace",
   largeSize: 50,
   lessLargeSize: 30,
   largeLineHeight: 1.2,

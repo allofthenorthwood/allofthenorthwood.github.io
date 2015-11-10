@@ -132,6 +132,14 @@ const PostContent = React.createClass({
           </Heading>
         },
       },
+      inlineCode: {
+        ...SimpleMarkdown.defaultRules.inlineCode,
+        react: function(node, output, state) {
+          return <code key={state.key} className={css(ST.code)}>
+            {node.content}
+          </code>
+        },
+      },
     };
 
     const rawBuiltParser = SimpleMarkdown.parserFor(rules);
@@ -197,6 +205,13 @@ const ST = StyleSheet.create({
     fontSize: SS.font.lessLargeSize,
     fontWeight: "bold",
     marginTop: "2em",
+  },
+  code: {
+    background: "#eee",
+    borderRadius: 3,
+    color: SS.color.greyDark,
+    fontFamily: SS.font.monoFamily,
+    padding: "1px 4px",
   },
 });
 
