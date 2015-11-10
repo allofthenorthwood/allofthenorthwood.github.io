@@ -16,6 +16,7 @@ const font = {
   lessLargeSize: 30,
   largeLineHeight: 1.2,
   contentSize: 20,
+  mediumSize: 16,
   smallSize: 14,
   lineHeight: 1.6,
 };

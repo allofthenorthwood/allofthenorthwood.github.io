@@ -32,6 +32,10 @@ const PostContent = React.createClass({
         type: "strong",
         Component: "strong",
       },
+      {
+        type: "blockQuote",
+        Component: "blockquote",
+      },
     ];
     const newRules = elements.reduce((acc, element) => {
       const {
@@ -183,6 +187,7 @@ const ST = StyleSheet.create({
   imageCaption: {
     color: SS.color.greyDark,
     fontFamily: SS.font.sansFamily,
+    fontSize: SS.font.mediumSize,
     marginTop: 10,
     textAlign: "center",
   },
@@ -212,6 +217,10 @@ const ST = StyleSheet.create({
     color: SS.color.greyDark,
     fontFamily: SS.font.monoFamily,
     padding: "1px 4px",
+  },
+  blockQuote: {
+    borderLeft: `5px solid ${SS.color.greyLight}`,
+    paddingLeft: 20,
   },
 });
 
