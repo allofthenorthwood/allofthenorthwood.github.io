@@ -1,15 +1,18 @@
-Blarg
+This is my blog
 ================
 
-**WIP**
+I made it. It has words. And pictures. Mostly pictures.
 
-To try it locally, run:
+
+If for some reason you wanted to run it locally, you could run:
 
 ```
 npm install
-webpack-dev-server --progress --colors --port 8070
+webpack-dev-server --progress --colors --port 8070 --history-api-fallback
 ```
 then go to
 ```
-http://localhost:8090
+http://localhost:8070
 ```
+
+but that would be odd!
