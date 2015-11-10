@@ -6,7 +6,6 @@ import Router from 'react-router';
 import { StyleSheet, css } from "./lib/aphrodite.js";
 
 const DefaultRoute = Router.DefaultRoute;
-const Link = Router.Link;
 const Route = Router.Route;
 const RouteHandler = Router.RouteHandler;
 

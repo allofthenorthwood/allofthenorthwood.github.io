@@ -38,7 +38,6 @@ const Icon = React.createClass({
     } = this.props;
     const padding = 1;
     const innerSize = (size - padding * 2);
-    const radius = innerSize / 2;
     const iconScale = (innerSize / BASE_ICON_SIZE);
     return (
       <Surface width={size} height={size}>
