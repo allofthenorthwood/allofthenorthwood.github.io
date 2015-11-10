@@ -120,6 +120,18 @@ const PostContent = React.createClass({
           </ListWrapper>
         },
       },
+      heading: {
+        ...SimpleMarkdown.defaultRules.heading,
+        react: function(node, output, state) {
+          const Heading = "h" + node.level;
+          return <Heading
+            key={state.key}
+            className={css(ST[Heading])}
+          >
+            {output(node.content, state)}
+          </Heading>
+        },
+      },
     };
 
     const rawBuiltParser = SimpleMarkdown.parserFor(rules);
@@ -180,6 +192,11 @@ const ST = StyleSheet.create({
   },
   orderedListItem: {
     listStyle: "decimal",
+  },
+  h2: {
+    fontSize: SS.font.lessLargeSize,
+    fontWeight: "bold",
+    marginTop: "2em",
   },
 });
 
