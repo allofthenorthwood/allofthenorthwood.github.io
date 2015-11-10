@@ -6,7 +6,7 @@ var config = {
   entry: path.resolve(__dirname, 'index.jsx'),
   output: {
     path: path.resolve(__dirname, 'assets'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     loaders: [{
