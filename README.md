@@ -16,3 +16,9 @@ http://localhost:8070
 ```
 
 but that would be odd!
+
+For building production:
+```
+NODE_ENV=production webpack -p --config webpack.production.config.js
+```
+Okay I admit it, this is just for my own reference.
