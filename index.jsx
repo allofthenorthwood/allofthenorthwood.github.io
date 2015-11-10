@@ -14,6 +14,16 @@ import SS from "./styles/shared.js";
 import Blog from "./components/blog.js";
 import Post from "./components/post.js";
 
+
+var appended = false;
+if (process.env.NODE_ENV === "development" && !appended) {
+  var webpackScript = document.createElement("script");
+  webpackScript.setAttribute("src", "/webpack-dev-server.js");
+  // This will destroy everything if it is not the last script in the body
+  document.body.appendChild(webpackScript);
+  appended = true;
+}
+
 const App = React.createClass({
   getInitialState: function() {
     return {
