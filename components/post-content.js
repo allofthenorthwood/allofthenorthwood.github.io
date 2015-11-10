@@ -98,6 +98,28 @@ const PostContent = React.createClass({
           </div>
         },
       },
+      list: {
+        ...SimpleMarkdown.defaultRules.list,
+        react: function(node, output, state) {
+          const ListWrapper = node.ordered ? "ol" : "ul";
+          const style = node.ordered ?
+            ST.orderedListItem : ST.unorderedListItem;
+
+          return <ListWrapper
+            className={css(ST.list)}
+            key={state.key}
+          >
+            {node.items.map(function(item, i) {
+              return <li
+                className={css(style)}
+                key={i}
+              >
+                {output(item, state)}
+              </li>
+            })}
+          </ListWrapper>
+        },
+      },
     };
 
     const rawBuiltParser = SimpleMarkdown.parserFor(rules);
@@ -149,6 +171,15 @@ const ST = StyleSheet.create({
   },
   strong: {
     fontWeight: 700,
+  },
+  list: {
+    paddingLeft: "2em",
+  },
+  unorderedListItem: {
+    listStyle: "disc",
+  },
+  orderedListItem: {
+    listStyle: "decimal",
   },
 });
 
