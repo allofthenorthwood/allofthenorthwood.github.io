@@ -58,6 +58,12 @@ const App = React.createClass({
       const client = new XMLHttpRequest();
       client.open("GET", post.url);
       client.onreadystatechange = () => {
+        if (client.readyState !== XMLHttpRequest.DONE) {
+          return;
+        }
+        if (client.status !== 200) {
+          return;
+        }
         const responseText = client.responseText;
         const curPosts = this.state.posts.slice();
         if (responseText.length > 0 && curPosts[idx].content == null) {
