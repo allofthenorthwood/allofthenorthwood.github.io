@@ -40,7 +40,7 @@ const App = React.createClass({
           ],
         },
         {
-          date: "Saturday Apr 18, 2015",
+          date: "April 2015",
           title: "Math Facts part 1: The idea",
           slug: "math-facts-part-1",
           url: "../posts/math-facts-part-1.md",
