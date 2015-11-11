@@ -24,7 +24,7 @@ If you take in numbers on a page as a series of glyphs that have no weight, no f
 
 ## What can we do about it?
 
-I want to find a way to teach number sense and numeracy in a way that makes reading equations as effortless as sight-reading the words on this page. I want to also make it available to as many people as possible, so I need a distribution method that is scalable and doesn't require paying for a private tutor
+I want to find a way to teach number sense and numeracy in a way that makes reading equations as effortless as sight-reading the words on this page. I want to also make it available to as many people as possible, so I need a distribution method that is scalable and doesn't require paying for a private tutor.
 
 This isn't going to be easy.
 
@@ -32,4 +32,8 @@ I'm thinking I'll start with something fundamental that Khan Academy doesn't cov
 
 Tackling addition of 1-digit numbers falls right in line with this, since it mirrors multiplication so nicely and it a very helpful prerequisite. After mastering the basics we can tackle their inverses (subtraction and division) and mixed operations. Any teacher will tell you that division gets much easier when you know your multiplication tables, and order of operations comes easily once you understand the constituent parts.
 
-The plan for now is to build an app (web? mobile? web-mobile?) that will help learners get to the point where their basic **Math Facts** – addition and multiplication – are automatic. How do we do that? What is the best way to tech this? I don't know. I'll start by building something, putting it in front of people, and seeing where that leads. Hopefully I'll find out that I'm wrong a lot, and that will give me lots of feedback on where to iterate.
+The plan for now is to build an app (web? mobile? web-mobile?) that will help learners get to the point where their basic **Math Facts** – addition and multiplication – are automatic. How do we do that? What is the best way to teach this? Is this something worth teaching? I don't know. I'll start by building something, putting it in front of people, and seeing where that leads. Hopefully I'll find out that I'm wrong a lot, and that will give me lots of feedback on where to iterate.
+
+> "You should take the approach that you’re wrong. Your goal is to be less wrong." — [Elon Musk](https://www.youtube.com/watch?v=Q8Y565OnarQ)
+
+Time to start being wrong a lot.
