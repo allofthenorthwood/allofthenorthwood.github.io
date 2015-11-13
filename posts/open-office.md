@@ -10,7 +10,7 @@ Building a fort becomes a lot easier when your desk is already enclosed on a few
 
 ![A drawing of a water bottle, two packages of food (they're literally labelled "food" and "more food" because this drawing isn't very good), and a pillow.](../images/open-office-step-3.jpg "Step 3: Equip the fort with water, snacks, and pillows" 500)
 
-You're probably not going to want to leave the safety of your fort very often, so make sure to stock up on essentions. Pro tip: this has the added benefit that if you trap yourself under your desk with only healthy snacks, you'll probably eat those instead of going to get alternatives.
+You're probably not going to want to leave the safety of your fort very often, so make sure to stock up on essentials. Pro tip: this has the added benefit that if you trap yourself under your desk with only healthy snacks, you'll probably eat those instead of going to get alternatives.
 
 ![A drawing of my iPhone and some earbuds with music notes drawn next to the earbuds. The image on the iPhone screen is supposed to be the Undertale soundtrack but the marker I was using was too thick so it's just a heart and the letters "UT".](../images/open-office-step-4.jpg "Step 4: Video game soundtrack" 500)
 
