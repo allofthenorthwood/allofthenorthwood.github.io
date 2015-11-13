@@ -42,12 +42,10 @@ const Icon = React.createClass({
     return (
       <Surface width={size} height={size}>
         <Group x={padding} y={padding}>
-          <Group>
-            <Shape
-              scale={iconScale}
-              fill={color}
-              d={paths[type]}/>
-          </Group>
+          <Shape
+            scale={iconScale}
+            fill={color}
+            d={paths[type]}/>
         </Group>
       </Surface>
     );
