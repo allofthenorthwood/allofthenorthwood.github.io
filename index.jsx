@@ -50,6 +50,15 @@ const App = React.createClass({
         },
         {
           date: "April 2015",
+          title: "Math Facts part 2: The prototype-prototype",
+          slug: "math-facts-part-2",
+          url: "../posts/math-facts-part-2.md",
+          tags: [
+            "math facts",
+          ],
+        },
+        {
+          date: "April 2015",
           title: "Math Facts part 1: The idea",
           slug: "math-facts-part-1",
           url: "../posts/math-facts-part-1.md",
