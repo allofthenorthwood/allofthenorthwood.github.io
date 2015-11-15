@@ -4,6 +4,8 @@ import React from "react";
 import SimpleMarkdown from "simple-markdown";
 import { StyleSheet, css } from "../lib/aphrodite.js";
 
+import Synesthesia from "../lib/synesthesia/app.jsx";
+
 import SS from "../styles/shared.js";
 
 const mapObject = (obj, transformation) => {
@@ -36,6 +38,7 @@ const classNamedSimpleMarkdownRules = mapObject(
           key={element.key}
         />;
       },
+      type: type,
     };
   }
 );
@@ -48,10 +51,10 @@ const LINK_HREF_AND_TITLE_AND_SIZE =
         // You can specify the width after the title (e.g. =200)
         "(\\d+)?";
 
-
 const rules = {
   ...classNamedSimpleMarkdownRules,
   list: {
+    type: "list",
     ...SimpleMarkdown.defaultRules.list,
     react: function(node, output, state) {
       // TODO(aria): It would be possible to unify this logic
@@ -75,7 +78,31 @@ const rules = {
       </ListWrapper>;
     },
   },
+  widget: {
+    type: "widget",
+    order: SimpleMarkdown.defaultRules.image.order + 0.5,
+    match: SimpleMarkdown.inlineRegex(new RegExp(
+      /^\[\[@ ([A-Za-z]+)\]\]/
+    )),
+    parse: function(capture, parse, state) {
+      var widget = {
+        widgetType: capture[1],
+      };
+      return widget;
+    },
+    react: function(node, output, state) {
+      const components = {
+        synesthesia: Synesthesia,
+      };
+      const Component = components[node.widgetType];
+      return <div key={state.key} className={css(ST[node.widgetType])}>
+        <Component />
+      </div>
+    },
+  },
   image: {
+    type: "image",
+    order: SimpleMarkdown.defaultRules.image.order,
     match: SimpleMarkdown.inlineRegex(new RegExp(
       "^!\\[(" + LINK_INSIDE + ")\\]" +
       "\\(" + LINK_HREF_AND_TITLE_AND_SIZE + "\\)"
@@ -108,8 +135,8 @@ const rules = {
 
 const rawBuiltParser = SimpleMarkdown.parserFor(rules);
 const parse = function(source) {
-    const blockSource = source + "\n\n";
-    return rawBuiltParser(blockSource, {inline: false});
+  const blockSource = source + "\n\n";
+  return rawBuiltParser(blockSource, {inline: false});
 };
 
 const mdOutput = SimpleMarkdown.reactFor(
@@ -205,6 +232,13 @@ const ST = StyleSheet.create({
     borderLeft: `5px solid ${SS.color.greyLight}`,
     paddingLeft: 20,
     color: SS.color.greyDark,
+  },
+
+  // widgets
+  synesthesia: {
+    fontFamily: SS.font.sansFamily,
+    height: 400,
+    position: "relative",
   },
 });
 

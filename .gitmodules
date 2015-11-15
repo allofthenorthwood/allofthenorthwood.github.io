@@ -1,0 +1,3 @@
+[submodule "lib/synesthesia"]
+	path = lib/synesthesia
+	url = git@github.com:allofthenorthwood/synesthesia.git

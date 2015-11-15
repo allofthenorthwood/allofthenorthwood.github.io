@@ -1,5 +1,14 @@
 module.exports = [
   {
+    date: "December 25, 2015",
+    title: "Synesthesia: reading in color",
+    slug: "synesthesia",
+    url: "../posts/synesthesia.md",
+    tags: [
+      "synesthesia",
+    ],
+  },
+  {
     date: "December 17, 2015",
     title: "Math Facts part 6: Getting feedback from kids",
     slug: "math-facts-part-6",
