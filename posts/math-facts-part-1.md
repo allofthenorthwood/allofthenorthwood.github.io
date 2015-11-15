@@ -37,3 +37,7 @@ The plan for now is to build an app (web? mobile? web-mobile?) that will help le
 > "You should take the approach that you’re wrong. Your goal is to be less wrong." — [Elon Musk](https://www.youtube.com/watch?v=Q8Y565OnarQ)
 
 Time to start being wrong a lot.
+
+------
+
+**Author's note:** This post was written retroactively in November 2015 to explain how this whole "Math Facts" process turned out. It's a series!
