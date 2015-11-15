@@ -73,35 +73,6 @@ const PostContent = React.createClass({
     const rules = {
       ...SimpleMarkdown.defaultRules,
       ...newRules,
-      image: {
-        match: SimpleMarkdown.inlineRegex(new RegExp(
-          "^!\\[(" + LINK_INSIDE + ")\\]" +
-          "\\(" + LINK_HREF_AND_TITLE_AND_SIZE + "\\)"
-        )),
-        parse: function(capture, parse, state) {
-          var image = {
-            alt: capture[1],
-            target: capture[2],
-            title: capture[3],
-            width: capture[4],
-          };
-          return image;
-        },
-        react: function(node, output, state) {
-          return <div key={state.key}>
-            <img
-              className={css(ST.image)}
-              src={SimpleMarkdown.sanitizeUrl(node.target)}
-              width={node.width}
-              title={node.alt}
-              alt={node.alt}
-            />
-            {node.title && <div className={css(ST.imageCaption)}>
-              {node.title}
-            </div>}
-          </div>
-        },
-      },
       list: {
         ...SimpleMarkdown.defaultRules.list,
         react: function(node, output, state) {
@@ -121,7 +92,36 @@ const PostContent = React.createClass({
                 {output(item, state)}
               </li>
             })}
-          </ListWrapper>
+          </ListWrapper>;
+        },
+      },
+      image: {
+        match: SimpleMarkdown.inlineRegex(new RegExp(
+          "^!\\[(" + LINK_INSIDE + ")\\]" +
+          "\\(" + LINK_HREF_AND_TITLE_AND_SIZE + "\\)"
+        )),
+        parse: function(capture, parse, state) {
+          var image = {
+            alt: capture[1],
+            target: capture[2],
+            title: parse(capture[3], state),
+            width: capture[4],
+          };
+          return image;
+        },
+        react: function(node, output, state) {
+          return <div key={state.key}>
+            <img
+              className={css(ST.image)}
+              src={SimpleMarkdown.sanitizeUrl(node.target)}
+              width={node.width}
+              title={node.alt}
+              alt={node.alt}
+            />
+            {node.title && <div className={css(ST.imageCaption)}>
+              {output(node.title, state)}
+            </div>}
+          </div>
         },
       },
       heading: {
@@ -133,7 +133,7 @@ const PostContent = React.createClass({
             className={css(ST[Heading])}
           >
             {output(node.content, state)}
-          </Heading>
+          </Heading>;
         },
       },
       inlineCode: {
@@ -141,7 +141,13 @@ const PostContent = React.createClass({
         react: function(node, output, state) {
           return <code key={state.key} className={css(ST.code)}>
             {node.content}
-          </code>
+          </code>;
+        },
+      },
+      hr: {
+        ...SimpleMarkdown.defaultRules.hr,
+        react: function(node, output, state) {
+          return <hr key={state.key} className={css(ST.hr)} />;
         },
       },
     };
@@ -210,6 +216,11 @@ const ST = StyleSheet.create({
     fontSize: SS.font.lessLargeSize,
     fontWeight: "bold",
     marginTop: "2em",
+  },
+  hr: {
+    border: "none",
+    borderTop: `1px solid ${SS.color.greyLight}`,
+    margin: "50px 0",
   },
   code: {
     background: "#eee",
