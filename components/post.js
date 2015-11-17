@@ -17,6 +17,7 @@ const Post = React.createClass({
     posts: React.PropTypes.arrayOf(
       React.PropTypes.shape({
         content: React.PropTypes.string.isRequired,
+        date: React.PropTypes.string.isRequired,
         title: React.PropTypes.string.isRequired,
       })
     ),
@@ -31,6 +32,7 @@ const Post = React.createClass({
     }
     const {
       content,
+      date,
       title,
     } = post;
     return <div>
@@ -50,7 +52,7 @@ const Post = React.createClass({
             {title}
           </h1>
           <div className={css(ST.date)}>
-            Tuesday Nov 5, 2015
+            {date}
           </div>
         </div>
       </div>
