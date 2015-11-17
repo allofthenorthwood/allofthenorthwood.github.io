@@ -6,52 +6,39 @@ import { StyleSheet, css } from "../lib/aphrodite.js";
 
 import SS from "../styles/shared.js";
 
-const elements = [
-  {
-    type: "link",
-    Component: "a",
-  },
-  {
-    type: "em",
-    Component: "em",
-  },
-  {
-    type: "paragraph",
-    Component: "div",
-  },
-  {
-    type: "strong",
-    Component: "strong",
-  },
-  {
-    type: "blockQuote",
-    Component: "blockquote",
-  },
-];
-const newRules = elements.reduce((acc, element) => {
-  const {
-    type,
-    Component,
-  } = element;
+const mapObject = (obj, transformation) => {
+  const result = {};
+  Object.keys(obj).forEach((key) => {
+    result[key] = transformation(obj[key], key);
+  });
+  return result;
+};
 
-  return newAcc = {
-    ...acc,
-    [type]: {
-      ...SimpleMarkdown.defaultRules[type],
+const classNamedSimpleMarkdownRules = mapObject(
+  SimpleMarkdown.defaultRules,
+  (rule, type) => {
+    return {
+      ...rule,
       react: (node, output, state) => {
-        const url = type === "link" ?
-          SimpleMarkdown.sanitizeUrl(node.target) : null;
-        return <Component
-          className={css(ST[type])}
-          href={url ? url : undefined}
-          key={state.key}
-        >
-          {output(node.content, state)}
-        </Component>;
+        const element = rule.react(node, output, state);
+        if (typeof element == "string") {
+          return element;
+        }
+
+        const propClassName = element.props && element.props.className;
+        const newClassName = propClassName ?
+          css(ST[type]) + " " + propClassName :
+          css(ST[type]);
+
+        return <element.type
+          {...element.props}
+          className={newClassName}
+          key={element.key}
+        />;
       },
-    },
-  };
-}, {});
+    };
+  }
+);
 
 const LINK_INSIDE = "(?:\\[[^\\]]*\\]|[^\\]]|\\](?=[^\\[]*\\]))*";
 const LINK_HREF_AND_TITLE_AND_SIZE =
@@ -61,12 +48,14 @@ const LINK_HREF_AND_TITLE_AND_SIZE =
         // You can specify the width after the title (e.g. =200)
         "(\\d+)?";
 
+
 const rules = {
-  ...SimpleMarkdown.defaultRules,
-  ...newRules,
+  ...classNamedSimpleMarkdownRules,
   list: {
     ...SimpleMarkdown.defaultRules.list,
     react: function(node, output, state) {
+      // TODO(aria): It would be possible to unify this logic
+      // with the wrapper logic above, but I'm not sure it's worth it.
       const ListWrapper = node.ordered ? "ol" : "ul";
       const style = node.ordered ?
         ST.orderedListItem : ST.unorderedListItem;
@@ -113,32 +102,6 @@ const rules = {
           {output(node.title, state)}
         </div>}
       </div>
-    },
-  },
-  heading: {
-    ...SimpleMarkdown.defaultRules.heading,
-    react: function(node, output, state) {
-      const Heading = "h" + node.level;
-      return <Heading
-        key={state.key}
-        className={css(ST[Heading])}
-      >
-        {output(node.content, state)}
-      </Heading>;
-    },
-  },
-  inlineCode: {
-    ...SimpleMarkdown.defaultRules.inlineCode,
-    react: function(node, output, state) {
-      return <code key={state.key} className={css(ST.code)}>
-        {node.content}
-      </code>;
-    },
-  },
-  hr: {
-    ...SimpleMarkdown.defaultRules.hr,
-    react: function(node, output, state) {
-      return <hr key={state.key} className={css(ST.hr)} />;
     },
   },
 };
