@@ -232,6 +232,7 @@ const ST = StyleSheet.create({
   blockQuote: {
     borderLeft: `5px solid ${SS.color.greyLight}`,
     paddingLeft: 20,
+    color: SS.color.greyDark,
   },
 });
 
