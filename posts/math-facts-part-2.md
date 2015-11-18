@@ -19,6 +19,10 @@ Even with React Native, I was still skeptical of how feasible it would be to put
 
 So I built a prototype.
 
+I mean, a prototype of the prototype.
+
+A prototype-prototype.
+
 ![The math facts prototype. It's an animated gif that shows how you can input the answers to addition questions by tapping (clicking) numbers on a number pad. When you complete 10 questions it takes you back to the home screen, which lists "play" and "stats" as options.](../images/math-facts-apr-26.gif "This prototype took three days to build. In it, you can navigate between “Play”, “Stats” and a home screen. It lets you do multiplication or addition questions and stores them in local storage on the device. It was pretty nifty considering how quick it was to build." 300)
 
 The prototype did the basics of what I wanted to build. It taught me a lot, especially in hindsight, about the power of showing people exactly what you want to build by hacking something together.
