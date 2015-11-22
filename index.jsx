@@ -29,6 +29,17 @@ const App = React.createClass({
     return {
       posts: [
         {
+          date: "Friday Nov 20, 2015",
+          title: "The Martian: Advice for aspiring writers",
+          slug: "the-martian",
+          url: "../posts/the-martian.md",
+          tags: [
+            "no spoilers",
+            "drawings",
+            "advice",
+          ],
+        },
+        {
           date: "Sunday Nov 8, 2015",
           title: "How to get work done in an open office",
           slug: "open-office",
