@@ -194,7 +194,10 @@ const ST = StyleSheet.create({
     color: SS.color.greyDark,
     fontFamily: SS.font.sansFamily,
     fontSize: SS.font.mediumSize,
+    marginLeft: "auto",
+    marginRight: "auto",
     marginTop: 10,
+    maxWidth: 600,
     textAlign: "center",
   },
   paragraph: {
