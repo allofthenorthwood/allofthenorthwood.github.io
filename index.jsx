@@ -29,6 +29,16 @@ const App = React.createClass({
     return {
       posts: [
         {
+          date: "Monday Nov 23, 2015",
+          title: "A weird time-tracking experiment in which I plan out my entire week in advance",
+          slug: "time-tracking-experiment-nov-2015",
+          url: "../posts/time-tracking-experiment.md",
+          tags: [
+            "time tracking",
+            "experiments",
+          ],
+        },
+        {
           date: "Friday Nov 20, 2015",
           title: "The Martian: Advice for aspiring writers",
           slug: "the-martian",
