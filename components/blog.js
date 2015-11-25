@@ -55,7 +55,7 @@ const ST = StyleSheet.create({
     textAlign: "center",
   },
   title: {
-    fontSize: SS.font.largeSize,
+    fontSize: SS.font.largestSize,
     lineHeight: SS.font.largeLineHeight,
   },
   divider: {

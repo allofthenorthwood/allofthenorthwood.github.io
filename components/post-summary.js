@@ -77,8 +77,10 @@ const PostSummary = React.createClass({
 
 const ST = StyleSheet.create({
   title: {
-    fontSize: SS.font.lessLargeSize,
+    fontSize: SS.font.largeSize,
     lineHeight: SS.font.largeLineHeight,
+    margin: "0 auto",
+    maxWidth: SS.layout.maxWidth,
     textAlign: "center",
   },
   titleLink: {

@@ -86,7 +86,7 @@ const ST = StyleSheet.create({
     padding: `0 ${SS.layout.padding}px`,
   },
   title: {
-    fontSize: SS.font.largeSize,
+    fontSize: SS.font.largerSize,
     lineHeight: SS.font.largeLineHeight,
     paddingTop: 70,
     textAlign: "center",
