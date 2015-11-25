@@ -28,7 +28,7 @@ const Post = React.createClass({
       return post.slug === this.props.params.slug;
     });
     if (post == null) {
-      return <div>404</div>;
+      window.location = '/';
     }
     const {
       content,
