@@ -216,7 +216,11 @@ const ST = StyleSheet.create({
     listStyle: "decimal",
   },
   h2: {
-    fontSize: SS.font.lessLargeSize,
+    fontSize: SS.font.largeSize,
+    fontWeight: "bold",
+    marginTop: "2em",
+  },
+  h3: {
     fontWeight: "bold",
     marginTop: "2em",
   },
