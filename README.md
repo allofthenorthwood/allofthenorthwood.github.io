@@ -7,4 +7,4 @@ I made it. It has words. And pictures. Mostly pictures.
 
 If you're still skeptical, here's what the blog looks like:
 
-![A drawing of my blog. It's silly.](https://raw.github.com/allofthenorthwood/allofthenorthwood.github.io/master/iamges/drawing-of-blog.png)
+![A drawing of my blog. It's silly.](https://raw.github.com/allofthenorthwood/allofthenorthwood.github.io/master/images/drawing-of-blog.png)
