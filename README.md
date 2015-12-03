@@ -3,22 +3,8 @@ This is my blog
 
 I made it. It has words. And pictures. Mostly pictures.
 
+[This is the link to the actual blog.](http://allofthenorthwood.github.io/) You can also read the posts on GitHub because they're markdown! I expanded my markdown to allow for a bunch of other stuff though so most of the images are broken on GitHub.
 
-If for some reason you wanted to run it locally, you could run:
+If you're still skeptical, here's what the blog looks like:
 
-```
-npm install
-webpack-dev-server --progress --colors --port 8070 --history-api-fallback
-```
-then go to
-```
-http://localhost:8070
-```
-
-but that would be odd!
-
-For building production:
-```
-NODE_ENV=production webpack -p --config webpack.production.config.js
-```
-Okay I admit it, this is just for my own reference.
+![A drawing of my blog. It's silly.](https://raw.github.com/allofthenorthwood/allofthenorthwood.github.io/master/iamges/drawing-of-blog.png)
