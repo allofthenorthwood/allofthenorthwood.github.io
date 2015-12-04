@@ -4,6 +4,8 @@ This made me feel pretty bad. I have a tendency to assume the worst, and after a
 
 Monica, one of the [Keepers of the Project Pipeline](/post/math-facts-part-2) at KA, approached me in the office one day, all smiles, and asked if she had missed a follow-up conversation about Math Facts. My blood ran pretty cold in that moment, but luckily Monica is too cheerful to be scary, even with my over-active fear sensors. I said "No, I haven't had one yet". At that point it had been 10 weeks since the project ended, and I was feeling stuck in the trap of "It's awkward how long it's been... do I bring it up...?". Monica then surprised me by looking *relieved* and saying "Oh good! I was worried I'd missed it. Do you have time to chat with me about it at some point?". I said yes, because of course I can make time to talk about Math Facts.
 
+![A drawing of me sitting on a couch saying "So uh. I made a thing." I'm usually pretty scared of speaking to a group of people, but for some reason Math Facts brings out the extrovert in me. I could talk for hours about it.](../images/i-made-a-thing.png)
+
 ## What do I talk about in the meeting?
 
 In preparation for the follow-up meeting, I looked back on the Math Facts project and wrote down the major things that happened, what I learned, and the open questions. Since you may also want to know these things, I will write them here as well. More coherently. I'm less rushed now.
@@ -17,8 +19,8 @@ Over the course of 5 weeks in April and May, I worked on building a prototype fo
 The students at the Khan Lab School (KLS) were great for gathering feedback about the app, as were the adults who wanted to get better at their Math Facts. I fixed things immediately based on small bits of feedback, and also noticed some larger insights. For example:
 
 - The kids enjoy at least some part of this experience! They are excited to come sit with me and answer multiplication questions.
-- When the app doesn't do much and doesn't reward you it feels like it should do more. Sometimes "more" would be described by the kids as "It should also have subtraction and division!" and other times it was described as "Doing math should give you coins so you can buy pets and battle them!"
-- Being able to tell if you were improving overall was important for the adults, while being able to tell if you were doing well on a per-game scale was more important for the kids. Kids would get a score, and then look at me to ask if it was good. Adults would ignore their game score and go check their overall progress.
+- When the app doesn't do much and doesn't reward you, it feels like it should do more. Sometimes "more" would be described by the kids as "It should also have subtraction and division!" and other times it was described as "Doing math should give you coins so you can buy pets and battle them!"
+- Being able to tell if you were improving overall was important for the adults, while being able to tell if you were doing well on a per-game scale was more important for the kids. Kids would get a score and then look at me to ask if it was good. Adults would ignore their game score and go check their overall progress.
 - Kids are much more curious about pictures than text. They often won't read the text – they would just pick out the key numbers or ideas and move on.
 
 
