@@ -1,8 +1,8 @@
-The day after the [Math Facts project](/post/math-facts-part-3) finished, I left on a 7-day charity bike ride from San Francisco to LA. This put me in a good position to step back from work, from coding, and from my normal life, into... a lot of biking. It was painful. It was glorious. When I got back to KA I started on a new project for the [CS platform](http://khanacademy.org/cs), went to Europe for a conference and vacation, and did a three-week support rotation. In what felt like no time at all, weeks passed with hardly a spare moment to work on Math Facts.
+The day after the [Math Facts project](/post/math-facts-part-3) finished, I left on a 7-day charity bike ride from San Francisco to LA. This put me in a good position to step back from work, from coding, and from my normal life, into… a lot of biking. It was painful. It was glorious. When I got back to KA I started on a new project for the [CS platform](http://khanacademy.org/cs), went to Europe for a conference and vacation, and did a three-week support rotation. In what felt like no time at all, weeks passed with hardly a spare moment to work on Math Facts.
 
 This made me feel pretty bad. I have a tendency to assume the worst, and after a few weeks of not having time to work on the Math Facts app, I assumed that it just wasn't worth it (to anyone) for me to keep working on it. This turned out to be false.
 
-Monica, one of the [Keepers of the Project Pipeline](/post/math-facts-part-2) at KA, approached me in the office one day, all smiles, and asked if she had missed a follow-up conversation about Math Facts. My blood ran pretty cold in that moment, but luckily Monica is too cheerful to be scary, even with my over-active fear sensors. I said "No, I haven't had one yet". At that point it had been 10 weeks since the project ended, and I was feeling stuck in the trap of "It's awkward how long it's been... do I bring it up...?". Monica then surprised me by looking *relieved* and saying "Oh good! I was worried I'd missed it. Do you have time to chat with me about it at some point?". I said yes, because of course I can make time to talk about Math Facts.
+Monica, one of the [Keepers of the Project Pipeline](/post/math-facts-part-2) at KA, approached me in the office one day, all smiles, and asked if she had missed a follow-up conversation about Math Facts. My blood ran pretty cold in that moment, but luckily Monica is too cheerful to be scary, even with my over-active fear sensors. I said "No, I haven't had one yet". At that point it had been 10 weeks since the project ended, and I was feeling stuck in the trap of "It's awkward how long it's been… do I bring it up…?". Monica then surprised me by looking *relieved* and saying "Oh good! I was worried I'd missed it. Do you have time to chat with me about it at some point?". I said yes, because of course I can make time to talk about Math Facts.
 
 ![A drawing of me sitting on a couch saying "So uh. I made a thing." I'm usually pretty scared of speaking to a group of people, but for some reason Math Facts brings out the extrovert in me. I could talk for hours about it.](../images/i-made-a-thing.png)
 
@@ -45,25 +45,20 @@ The students at the Khan Lab School (KLS) were great for gathering feedback abou
 4. How does the design affect engagement, ease of use, and effectiveness?
 
  - I've gotten feedback from adults that UI is laggy/clunky, and the kids need a lot of guidance to get started. That makes sense! It's iteration one. Focusing more on design is really important for fleshing out where the problems are.
- - Make onboarding screens for first-time users of the app.
+ - Make tutorial screens for first-time users of the app.
  - Better communicate in the app about what the learner is trying to achieve and how much progress they're making towards their goal.
 
 ### Where do we go from here?
 
-Clearly we need to **collect data** in order to iterate. Then we need to analyze this data to see if the app is helping. We also need to get qualitative feedback about how fun or painful it is to use every day, especially from a more diverse pool of learners who don't like me as much. :)
+Clearly we need to **collect data** in order to iterate. Then we need to analyze this data to see if the app is helping. We also need to get qualitative feedback about how fun or painful it is to use every day, especially from a more diverse pool of learners who don't like me as much.
 
-We also need to invest time into **design**. Once we have feedback coming in, we need to come up with possible solutions and test them. I imagine this will start with a lot of low-hanging fruit, since this really hasn't been a priority yet. Re-architecting how the user experience flows might be necessary, but should be simple given that most of the logic in the app is already done. And then it will be pretty! And more people will like it!
+We'll also need to invest time into **design**. Once we have feedback coming in, we need to come up with possible solutions to design problems and test them.
 
 ## The reaction
 
 This meeting meant a lot to me. For months I have grappled with the fear that this project wasn't going to go anywhere. That I had somehow, despite accomplishing all the tasks I set out in the proposal, still failed to deliver in some crucial way, and thus the project wasn't worth investing more in. I walked into a meeting room with The Keepers of the Project Pipeline and my manager, put up a doc with all of the above notes, and talked about Math Facts.
 
-Their reaction was wonderful. I received praise and admiration and thanks for the work I put into the project. We brainstormed about what to do next and came up with a few key actionable tasks:
-
-1. Set up the app so that it sends data back to a central location.
-2. Set the app up in a way that lets us easily distribute it to people for alpha testing.
-3. Fix the bare-minimum bugs like the keyboard being laggy.
-4. Try adding push notifications or some sort of daily reminder or incentive.
+Their reaction was wonderful. I received praise and admiration and thanks for the work I put into the project. We brainstormed about what to do next and came up with a few key actionable tasks.
 
 A paraphrased quote from Jason is what really made me know that this project was a success:
 
