@@ -221,6 +221,7 @@ const ST = StyleSheet.create({
     marginTop: "2em",
   },
   h3: {
+    fontSize: 24,
     fontWeight: "bold",
     marginTop: "2em",
   },
