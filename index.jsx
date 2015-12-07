@@ -29,7 +29,16 @@ const App = React.createClass({
     return {
       posts: [
         {
-          date: "Monday Nov 23, 2015",
+          date: "Sunday Dec 6, 2015",
+          title: "Math Facts part 5: Collecting data",
+          slug: "math-facts-part-5",
+          url: "../posts/math-facts-part-5.md",
+          tags: [
+            "math facts",
+          ],
+        },
+        {
+          date: "Tuesday Nov 24, 2015",
           title: "A weird time-tracking experiment in which I plan out my entire week in advance",
           slug: "time-tracking-experiment-nov-2015",
           url: "../posts/time-tracking-experiment.md",
@@ -72,6 +81,7 @@ const App = React.createClass({
         {
           date: "September 2015",
           title: "Math Facts part 4: The follow-up meeting",
+          written: "Thursday Dec 3, 2015",
           slug: "math-facts-part-4",
           url: "../posts/math-facts-part-4.md",
           tags: [
@@ -81,6 +91,7 @@ const App = React.createClass({
         {
           date: "June 2015",
           title: "Math Facts part 3: The five-week solo project",
+          written: "Wednesday Nov 25, 2015",
           slug: "math-facts-part-3",
           url: "../posts/math-facts-part-3.md",
           tags: [
@@ -90,6 +101,7 @@ const App = React.createClass({
         {
           date: "April 2015",
           title: "Math Facts part 2: The prototype-prototype",
+          written: "Monday Nov 16, 2015",
           slug: "math-facts-part-2",
           url: "../posts/math-facts-part-2.md",
           tags: [
@@ -99,6 +111,7 @@ const App = React.createClass({
         {
           date: "April 2015",
           title: "Math Facts part 1: The idea",
+          written: "Wednesday Nov 11, 2015",
           slug: "math-facts-part-1",
           url: "../posts/math-facts-part-1.md",
           tags: [
