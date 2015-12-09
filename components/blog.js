@@ -36,7 +36,7 @@ const Blog = React.createClass({
 
     return <div>
       <div className={css(ST.alignContent)}>
-        <HomeButton />
+        {params.tag != null && <HomeButton />}
         <div className={css(ST.headerContent)}>
           <img
             src="../images/trees.jpg"
