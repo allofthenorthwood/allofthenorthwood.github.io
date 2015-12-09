@@ -47,12 +47,14 @@ const PostSummary = React.createClass({
 
           <div className={css(ST.tags)}>
             {tags.map((tag, idx) => {
-              return <span
+              const tagSlug = tag.replace(/ /g, "-");
+              return <Link
                 className={css(ST.tag)}
                 key={`tag-${idx}`}
+                to={`/tag/${tagSlug}`}
               >
                 #{tag}
-              </span>;
+              </Link>;
             })}
           </div>
 
@@ -122,14 +124,17 @@ const ST = StyleSheet.create({
     marginTop: 1,
   },
   tags: {
-    ...SS.accentText,
-    color: SS.color.greyLight,
     float: "left",
     marginTop: 7,
-    textAlign: "center",
   },
   tag: {
     marginRight: 10,
+    ...SS.accentText,
+    color: SS.color.greyLight,
+    textDecoration: "none",
+    ":hover": {
+      borderBottom: `1px solid ${SS.color.greyLight}`,
+    },
   },
 });
 

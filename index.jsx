@@ -83,6 +83,7 @@ const ST = StyleSheet.create({
 const routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="post" path="/post/:slug" handler={Post} />
+    <Route name="tag" path="/tag/:tag" handler={Blog} />
     <DefaultRoute handler={Blog} />
   </Route>
 );

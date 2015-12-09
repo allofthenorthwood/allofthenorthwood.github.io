@@ -6,6 +6,7 @@ import { StyleSheet, css } from "../lib/aphrodite.js";
 import SS from "../styles/shared.js";
 
 import PostSummary from "./post-summary.js";
+import HomeButton from "./home-button.js";
 
 const Blog = React.createClass({
   propTypes: {
@@ -14,19 +15,41 @@ const Blog = React.createClass({
 
   render: function () {
     const {
-      posts,
+      params,
     } = this.props;
 
+    const posts = [];
+    this.props.posts.forEach((post) => {
+      if (params.tag != null) {
+        const tag = params.tag.replace(/-/g, " ");
+        // There is a tag specified
+        if (post.tags.indexOf(tag) > -1) {
+          // This post has that tag so show it
+          posts.push(post);
+        }
+      } else {
+        // No tag, so show all the posts
+        posts.push(post);
+      }
+    });
+
     return <div>
-      <div className={css(ST.header)}>
-        <img
-          src="../images/trees.jpg"
-          alt=""
-          className={css(ST.headerImage)}
-        />
-        <h1 className={css(ST.title)}>
-          All of the Northwood
-        </h1>
+      <div className={css(ST.alignContent)}>
+        <HomeButton />
+        <div className={css(ST.headerContent)}>
+          <img
+            src="../images/trees.jpg"
+            alt=""
+            className={css(ST.headerImage)}
+          />
+          <h1 className={css(ST.title)}>
+            All of the Northwood
+          </h1>
+          {params.tag != null &&
+          <div className={css(ST.tagLine)}>
+            Posts tagged <span className={css(ST.tagName)}>#{params.tag}</span>
+          </div>}
+        </div>
       </div>
 
       <div className={css(ST.posts)}>
@@ -42,16 +65,16 @@ const Blog = React.createClass({
 });
 
 const ST = StyleSheet.create({
-  header: {
-    textAlign: "center",
-  },
   headerImage: {
     marginTop: 30,
     width: 120,
   },
-  headerContent: {
-    margin: "0 auto",
+  alignContent: {
+    margin: "20px auto 0",
     maxWidth: SS.layout.maxWidth,
+    padding: `0 ${SS.layout.padding}px`,
+  },
+  headerContent: {
     textAlign: "center",
   },
   title: {
@@ -62,6 +85,17 @@ const ST = StyleSheet.create({
     borderTop: `1px solid ${SS.color.greyLight}`,
     margin: "40px auto",
     width: 50,
+  },
+  tagLine: {
+    ...SS.accentText,
+    fontSize: SS.font.mediumSize,
+    marginTop: 10,
+    textTransform: "none",
+  },
+  tagName: {
+    color: SS.color.greyLight,
+    fontSize: SS.font.mediumSize,
+    textTransform: "uppercase",
   },
   posts: {
     paddingBottom: 100,
