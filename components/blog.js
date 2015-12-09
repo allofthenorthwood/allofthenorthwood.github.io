@@ -53,6 +53,15 @@ const Blog = React.createClass({
       </div>
 
       <div className={css(ST.posts)}>
+        {posts.length === 0 && <div>
+          <div className={css(ST.divider)} />
+          <div
+            className={css(ST.alignContent, ST.noPosts)}
+          >
+            {"No posts found </3"}
+          </div>
+        </div>}
+
         {posts.map((post, idx) => {
           return <div key={`post-${idx}`}>
             <div className={css(ST.divider)} />
@@ -99,6 +108,11 @@ const ST = StyleSheet.create({
   },
   posts: {
     paddingBottom: 100,
+  },
+  noPosts: {
+    color: SS.color.greyLight,
+    fontSize: SS.font.largeSize,
+    textAlign: "center",
   },
 });
 
