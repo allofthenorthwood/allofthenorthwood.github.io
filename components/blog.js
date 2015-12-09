@@ -18,10 +18,11 @@ const Blog = React.createClass({
       params,
     } = this.props;
 
+    const tag = params.tag != null ? params.tag.replace(/-/g, " ") : null;
+
     const posts = [];
     this.props.posts.forEach((post) => {
       if (params.tag != null) {
-        const tag = params.tag.replace(/-/g, " ");
         // There is a tag specified
         if (post.tags.indexOf(tag) > -1) {
           // This post has that tag so show it
@@ -47,7 +48,7 @@ const Blog = React.createClass({
           </h1>
           {params.tag != null &&
           <div className={css(ST.tagLine)}>
-            Posts tagged <span className={css(ST.tagName)}>#{params.tag}</span>
+            Posts tagged <span className={css(ST.tagName)}>#{tag}</span>
           </div>}
         </div>
       </div>
