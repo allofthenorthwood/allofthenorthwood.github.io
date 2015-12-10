@@ -1,5 +1,14 @@
 module.exports = [
   {
+    date: "Wednesday Dec 9, 2015",
+    title: "Write many fast posts instead of few perfect ones",
+    slug: "write-fast-fail-often",
+    url: "../posts/pots.md",
+    tags: [
+      "advice",
+    ],
+  },
+  {
     date: "Sunday Dec 6, 2015",
     title: "Math Facts part 5: Collecting data",
     slug: "math-facts-part-5",
