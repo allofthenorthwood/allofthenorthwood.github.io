@@ -62,7 +62,9 @@ const PostNavigation = React.createClass({
               size={SS.link.fontSize - 2}
             />
           </span>
-          <span className={css(ST.linkText)}>{prev.title}</span>
+          <span className={css(ST.linkText, ST.prevText)}>
+            {prev.title}
+          </span>
         </Link> : <div className={css(ST.link)} />}
         {next && <Link
           to={'/post/' + next.slug}
@@ -85,7 +87,9 @@ const PostNavigation = React.createClass({
               size={SS.link.fontSize - 2}
             />
           </span>
-          <span className={css(ST.linkText)}>{next.title}</span>
+          <span className={css(ST.linkText, ST.nextText)}>
+            {next.title}
+          </span>
         </Link>}
       </div>
     </div>;
@@ -113,6 +117,9 @@ const ST = StyleSheet.create({
     marginLeft: 8,
     marginRight: 0,
   },
+  nextText: {
+    marginRight: 20,
+  },
   prev: {
     paddingLeft: 0,
   },
@@ -123,12 +130,17 @@ const ST = StyleSheet.create({
     marginLeft: 0,
     marginRight: 8,
   },
+  prevText: {
+    marginLeft: 20,
+  },
+
 
   link: {
     ...SS.link,
     boxSizing: "border-box",
     display: "inline-block",
-    padding: 40,
+    fontSize: SS.font.mediumSize,
+    padding: "40px 10px",
     textTransform: "none",
     verticalAlign: "top",
     width: "50%",
@@ -144,6 +156,7 @@ const ST = StyleSheet.create({
   },
   linkText: {
     color: SS.color.black,
+    display: "block",
     verticalAlign: "top",
   },
   icon: {

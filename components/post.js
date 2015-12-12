@@ -81,7 +81,7 @@ const ST = StyleSheet.create({
     textTransform: "uppercase",
   },
   post: {
-    padding: `0 ${SS.layout.padding}px 150px`,
+    padding: `0 ${SS.layout.padding}px 100px`,
   },
   postContent: {
     fontSize: SS.font.contentSize,
