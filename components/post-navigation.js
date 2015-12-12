@@ -27,7 +27,8 @@ const PostNavigation = React.createClass({
   },
   getInitialState: function() {
     return {
-      focus: false,
+      focusNext: false,
+      focusPrev: false,
     };
   },
   render: function() {
