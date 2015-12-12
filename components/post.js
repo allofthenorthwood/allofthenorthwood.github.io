@@ -9,6 +9,7 @@ import SS from "../styles/shared.js";
 
 import PostContent from "./post-content.js";
 import HomeButton from "./home-button.js";
+import PostNavigation from "./post-navigation.js";
 
 const Post = React.createClass({
   propTypes: {
@@ -16,23 +17,27 @@ const Post = React.createClass({
       React.PropTypes.shape({
         content: React.PropTypes.string.isRequired,
         date: React.PropTypes.string.isRequired,
+        slug: React.PropTypes.string.isRequired,
         title: React.PropTypes.string.isRequired,
       })
     ),
   },
 
   render: function () {
-    const post = this.props.posts.find((post) => {
-      return post.slug === this.props.params.slug;
-    });
-    if (post == null) {
+    const posts = this.props.posts.slice().reverse();
+    const postIdx = posts.reduce((ret, post, idx) => {
+      return post.slug === this.props.params.slug ? idx : ret;
+    }, -1);
+    if (postIdx === -1) {
       window.location = '/';
     }
+    const next = postIdx < posts.length - 1 ? posts[postIdx + 1] : null;
+    const prev = postIdx > 0 ? posts[postIdx - 1] : null;
     const {
       content,
       date,
       title,
-    } = post;
+    } = posts[postIdx];
     return <div>
       <div className={css(ST.header)}>
         <HomeButton />
@@ -51,6 +56,7 @@ const Post = React.createClass({
           <PostContent markdownContent={content} />
         </div>
       </div>
+      <PostNavigation next={next} prev={prev} />
     </div>;
   },
 });
