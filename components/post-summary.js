@@ -11,6 +11,7 @@ import SS from "../styles/shared.js";
 
 import Icon from "./icon.js";
 import PostContent from "./post-content.js";
+import ReadMore from "./read-more.js";
 
 const PostSummary = React.createClass({
   propTypes: {
@@ -59,16 +60,7 @@ const PostSummary = React.createClass({
           </div>
 
           <div className={css(ST.postLink)}>
-            <Link className={css(ST.link)} to={`/post/${slug}`}>
-              <span className={css(ST.linkText)}>Read More</span>
-              <span className={css(ST.icon)}>
-                <Icon
-                  color={SS.link.color}
-                  type="angleBracketRight"
-                  size={SS.link.fontSize - 2}
-                />
-              </span>
-            </Link>
+            <ReadMore href={`/post/${slug}`} />
           </div>
 
         </div>
