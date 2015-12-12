@@ -41,7 +41,7 @@ const PostNavigation = React.createClass({
     } = this.state;
     return <div className={css(ST.wrapper)}>
       <div className={css(ST.content)}>
-        {prev && <Link
+        {prev ? <Link
           to={'/post/' + prev.slug}
           className={css(ST.link, ST.prev)}
           onMouseOver={() => {this.setState({focusPrev: true})}}
@@ -63,7 +63,7 @@ const PostNavigation = React.createClass({
             />
           </span>
           <span className={css(ST.linkText)}>{prev.title}</span>
-        </Link>}
+        </Link> : <div className={css(ST.link)} />}
         {next && <Link
           to={'/post/' + next.slug}
           className={css(ST.link, ST.next)}
