@@ -125,7 +125,6 @@ const ST = StyleSheet.create({
   },
   tags: {
     float: "left",
-    marginTop: 7,
   },
   tag: {
     marginRight: 10,
