@@ -73,10 +73,10 @@ const funLinkUnderline = {
 };
 
 module.exports = {
-  accentText: accentText,
-  color: color,
-  font: font,
-  layout: layout,
-  link: link,
-  funLinkUnderline: funLinkUnderline,
+  accentText,
+  color,
+  font,
+  funLinkUnderline,
+  layout,
+  link,
 };
