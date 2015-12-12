@@ -49,10 +49,34 @@ const accentText = {
   textTransform: "uppercase",
 };
 
+const funLinkUnderline = {
+  // From: http://tobiasahlin.com/blog/css-trick-animating-link-underlines/
+  ":before": {
+    backgroundColor: color.greyLight,
+    content: "\"\"",
+    position: "absolute",
+    width: "100%",
+    height: 1,
+    bottom: -2,
+    left: 0,
+    visibility: "hidden",
+    WebkitTransform: "scaleX(0)",
+    transform: "scaleX(0)",
+    WebkitTransition: "all 0.2s ease-in-out 0s",
+    transition: "all 0.2s ease-in-out 0s",
+  },
+  ":hover:before": {
+    visibility: "visible",
+    WebkitTransform: "scaleX(1)",
+    transform: "scaleX(1)",
+  }
+};
+
 module.exports = {
   accentText: accentText,
   color: color,
   font: font,
   layout: layout,
   link: link,
+  funLinkUnderline: funLinkUnderline,
 };

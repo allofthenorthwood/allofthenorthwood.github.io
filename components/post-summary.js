@@ -119,13 +119,12 @@ const ST = StyleSheet.create({
     float: "left",
   },
   tag: {
-    marginRight: 10,
     ...SS.accentText,
+    ...SS.funLinkUnderline,
     color: SS.color.greyLight,
+    marginRight: 10,
+    position: "relative",
     textDecoration: "none",
-    ":hover": {
-      borderBottom: `1px solid ${SS.color.greyLight}`,
-    },
   },
 });
 
