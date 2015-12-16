@@ -10,7 +10,7 @@ module.exports = [
   },
   {
     date: "Sunday Dec 6, 2015",
-    title: "Math Facts part 5: Collecting data",
+    title: "Math Facts part 5: The side project to collect data",
     slug: "math-facts-part-5",
     url: "../posts/math-facts-part-5.md",
     tags: [

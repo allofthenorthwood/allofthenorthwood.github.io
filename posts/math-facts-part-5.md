@@ -2,7 +2,7 @@ At this point I've made an app that lets you practice your math facts, but there
 
 ## The proposal
 
-We agreed in the [follow-up conversation](/posts/math-facts-part-4.md) that a two-week project to set up data collection is a good idea. In order to collect data, we need to, y'know, store the data somewhere and have people to collect it from. I knew it would be tight to fit this project into our already-packed calendar for the year, so I distilled it down to what I hoped was the bare minimum we needed:
+We agreed in the [follow-up conversation](/posts/math-facts-part-4) that a two-week project to set up data collection is a good idea. In order to collect data, we need to, y'know, store the data somewhere and have people to collect it from. I knew it would be tight to fit this project into our already-packed calendar for the year, so I distilled it down to what I hoped was the bare minimum we needed:
 
 1. Set up the app so that it sends data back to a central location.
 2. Set the app up in a way that lets us easily distribute it to people for alpha testing.
