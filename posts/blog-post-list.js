@@ -1,6 +1,6 @@
 module.exports = [
   {
-    date: "???",
+    date: "December 17, 2015",
     title: "Math Facts part 6: Getting feedback from kids",
     slug: "math-facts-part-6",
     url: "../posts/math-facts-part-6.md",
