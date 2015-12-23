@@ -173,6 +173,7 @@ const ST = StyleSheet.create({
   link: {
     borderBottom: `1px solid ${SS.color.greenLight}`,
     color: SS.color.greenLight,
+    paddingBottom: 1,
     textDecoration: "none",
     ":hover": {
       borderColor: SS.color.green,
