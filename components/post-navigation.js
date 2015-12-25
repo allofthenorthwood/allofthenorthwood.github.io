@@ -15,12 +15,14 @@ const PostNavigation = React.createClass({
     next: React.PropTypes.shape({
       content: React.PropTypes.string.isRequired,
       date: React.PropTypes.string.isRequired,
+      link: React.PropTypes.string,
       slug: React.PropTypes.string.isRequired,
       title: React.PropTypes.string.isRequired,
     }),
     prev: React.PropTypes.shape({
       content: React.PropTypes.string.isRequired,
       date: React.PropTypes.string.isRequired,
+      link: React.PropTypes.string,
       slug: React.PropTypes.string.isRequired,
       title: React.PropTypes.string.isRequired,
     }),
@@ -43,7 +45,7 @@ const PostNavigation = React.createClass({
     return <div className={css(ST.wrapper)}>
       <div className={css(ST.content)}>
         {prev ? <Link
-          to={'/post/' + prev.slug}
+          to={'/post/' + (prev.link ? prev.link : prev.slug)}
           className={css(ST.link, ST.prev)}
           onMouseOver={() => {this.setState({focusPrev: true})}}
           onMouseOut={() => {this.setState({focusPrev: false})}}
@@ -68,7 +70,7 @@ const PostNavigation = React.createClass({
           </span>
         </Link> : <div className={css(ST.link)} />}
         {next && <Link
-          to={'/post/' + next.slug}
+          to={'/post/' + (next.link ? next.link : next.slug)}
           className={css(ST.link, ST.next)}
           onMouseOver={() => {this.setState({focusNext: true})}}
           onMouseOut={() => {this.setState({focusNext: false})}}

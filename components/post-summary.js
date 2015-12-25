@@ -18,6 +18,7 @@ const PostSummary = React.createClass({
     post: React.PropTypes.shape({
       content: React.PropTypes.string.isRequired,
       date: React.PropTypes.string.isRequired,
+      link: React.PropTypes.string,
       slug: React.PropTypes.string.isRequired,
       tags: React.PropTypes.arrayOf(React.PropTypes.string),
       title: React.PropTypes.string.isRequired,
@@ -28,6 +29,7 @@ const PostSummary = React.createClass({
     const {
       content,
       date,
+      link,
       slug,
       tags,
       title,
@@ -36,7 +38,10 @@ const PostSummary = React.createClass({
     return <div>
       <div className={css(ST.post)}>
         <h2 className={css(ST.title)}>
-          <Link className={css(ST.titleLink)} to={`/post/${slug}`}>
+          <Link
+            className={css(ST.titleLink)}
+            to={`/post/${link ? link : slug}`}
+          >
             {title}
           </Link>
         </h2>
@@ -60,7 +65,7 @@ const PostSummary = React.createClass({
           </div>
 
           <div className={css(ST.postLink)}>
-            <ReadMore href={`/post/${slug}`} />
+            <ReadMore href={`/post/${link ? link : slug}`} />
           </div>
 
         </div>
