@@ -30,6 +30,7 @@ const Post = React.createClass({
     }, -1);
     if (postIdx === -1) {
       window.location = '/';
+      return null;
     }
     const next = postIdx < posts.length - 1 ? posts[postIdx + 1] : null;
     const prev = postIdx > 0 ? posts[postIdx - 1] : null;
