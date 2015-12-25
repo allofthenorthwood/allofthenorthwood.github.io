@@ -6,6 +6,115 @@ import { StyleSheet, css } from "../lib/aphrodite.js";
 
 import SS from "../styles/shared.js";
 
+const mapObject = (obj, transformation) => {
+  const result = {};
+  Object.keys(obj).forEach((key) => {
+    result[key] = transformation(obj[key], key);
+  });
+  return result;
+};
+
+const classNamedSimpleMarkdownRules = mapObject(
+  SimpleMarkdown.defaultRules,
+  (rule, type) => {
+    return {
+      ...rule,
+      react: (node, output, state) => {
+        const element = rule.react(node, output, state);
+        if (typeof element == "string") {
+          return element;
+        }
+
+        const propClassName = element.props && element.props.className;
+        const newClassName = propClassName ?
+          css(ST[type]) + " " + propClassName :
+          css(ST[type]);
+
+        return <element.type
+          {...element.props}
+          className={newClassName}
+          key={element.key}
+        />;
+      },
+    };
+  }
+);
+
+const LINK_INSIDE = "(?:\\[[^\\]]*\\]|[^\\]]|\\](?=[^\\[]*\\]))*";
+const LINK_HREF_AND_TITLE_AND_SIZE =
+        "\\s*" +
+        "<?([^\\s]*?)>?" +
+        "(?:\\s+['\"]([\\s\\S]*?)['\"])?\\s*" +
+        // You can specify the width after the title (e.g. =200)
+        "(\\d+)?";
+
+
+const rules = {
+  ...classNamedSimpleMarkdownRules,
+  list: {
+    ...SimpleMarkdown.defaultRules.list,
+    react: function(node, output, state) {
+      // TODO(aria): It would be possible to unify this logic
+      // with the wrapper logic above, but I'm not sure it's worth it.
+      const ListWrapper = node.ordered ? "ol" : "ul";
+      const style = node.ordered ?
+        ST.orderedListItem : ST.unorderedListItem;
+
+      return <ListWrapper
+        className={css(ST.list)}
+        key={state.key}
+      >
+        {node.items.map(function(item, i) {
+          return <li
+            className={css(style)}
+            key={i}
+          >
+            {output(item, state)}
+          </li>
+        })}
+      </ListWrapper>;
+    },
+  },
+  image: {
+    match: SimpleMarkdown.inlineRegex(new RegExp(
+      "^!\\[(" + LINK_INSIDE + ")\\]" +
+      "\\(" + LINK_HREF_AND_TITLE_AND_SIZE + "\\)"
+    )),
+    parse: function(capture, parse, state) {
+      var image = {
+        alt: capture[1],
+        target: capture[2],
+        title: parse(capture[3], state),
+        width: capture[4],
+      };
+      return image;
+    },
+    react: function(node, output, state) {
+      return <div key={state.key}>
+        <img
+          className={css(ST.image)}
+          src={SimpleMarkdown.sanitizeUrl(node.target)}
+          width={node.width}
+          title={node.alt}
+          alt={node.alt}
+        />
+        {node.title && <div className={css(ST.imageCaption)}>
+          {output(node.title, state)}
+        </div>}
+      </div>
+    },
+  },
+};
+
+const rawBuiltParser = SimpleMarkdown.parserFor(rules);
+const parse = function(source) {
+    const blockSource = source + "\n\n";
+    return rawBuiltParser(blockSource, {inline: false});
+};
+
+const mdOutput = SimpleMarkdown.reactFor(
+  SimpleMarkdown.ruleOutput(rules, "react"));
+
 const PostContent = React.createClass({
   propTypes: {
     markdownContent: React.PropTypes.string,
@@ -14,152 +123,6 @@ const PostContent = React.createClass({
     const {
       markdownContent,
     } = this.props;
-
-    const elements = [
-      {
-        type: "link",
-        Component: "a",
-      },
-      {
-        type: "em",
-        Component: "em",
-      },
-      {
-        type: "paragraph",
-        Component: "div",
-      },
-      {
-        type: "strong",
-        Component: "strong",
-      },
-      {
-        type: "blockQuote",
-        Component: "blockquote",
-      },
-    ];
-    const newRules = elements.reduce((acc, element) => {
-      const {
-        type,
-        Component,
-      } = element;
-
-      return newAcc = {
-        ...acc,
-        [type]: {
-          ...SimpleMarkdown.defaultRules[type],
-          react: (node, output, state) => {
-            const url = type === "link" ?
-              SimpleMarkdown.sanitizeUrl(node.target) : null;
-            return <Component
-              className={css(ST[type])}
-              href={url ? url : undefined}
-              key={state.key}
-            >
-              {output(node.content, state)}
-            </Component>;
-          },
-        },
-      };
-    }, {});
-
-    const LINK_INSIDE = "(?:\\[[^\\]]*\\]|[^\\]]|\\](?=[^\\[]*\\]))*";
-    const LINK_HREF_AND_TITLE_AND_SIZE =
-            "\\s*" +
-            "<?([^\\s]*?)>?" +
-            "(?:\\s+['\"]([\\s\\S]*?)['\"])?\\s*" +
-            // You can specify the width after the title (e.g. =200)
-            "(\\d+)?";
-
-    const rules = {
-      ...SimpleMarkdown.defaultRules,
-      ...newRules,
-      list: {
-        ...SimpleMarkdown.defaultRules.list,
-        react: function(node, output, state) {
-          const ListWrapper = node.ordered ? "ol" : "ul";
-          const style = node.ordered ?
-            ST.orderedListItem : ST.unorderedListItem;
-
-          return <ListWrapper
-            className={css(ST.list)}
-            key={state.key}
-          >
-            {node.items.map(function(item, i) {
-              return <li
-                className={css(style)}
-                key={i}
-              >
-                {output(item, state)}
-              </li>
-            })}
-          </ListWrapper>;
-        },
-      },
-      image: {
-        match: SimpleMarkdown.inlineRegex(new RegExp(
-          "^!\\[(" + LINK_INSIDE + ")\\]" +
-          "\\(" + LINK_HREF_AND_TITLE_AND_SIZE + "\\)"
-        )),
-        parse: function(capture, parse, state) {
-          var image = {
-            alt: capture[1],
-            target: capture[2],
-            title: parse(capture[3], state),
-            width: capture[4],
-          };
-          return image;
-        },
-        react: function(node, output, state) {
-          return <div key={state.key}>
-            <img
-              className={css(ST.image)}
-              src={SimpleMarkdown.sanitizeUrl(node.target)}
-              width={node.width}
-              title={node.alt}
-              alt={node.alt}
-            />
-            {node.title && <div className={css(ST.imageCaption)}>
-              {output(node.title, state)}
-            </div>}
-          </div>
-        },
-      },
-      heading: {
-        ...SimpleMarkdown.defaultRules.heading,
-        react: function(node, output, state) {
-          const Heading = "h" + node.level;
-          return <Heading
-            key={state.key}
-            className={css(ST[Heading])}
-          >
-            {output(node.content, state)}
-          </Heading>;
-        },
-      },
-      inlineCode: {
-        ...SimpleMarkdown.defaultRules.inlineCode,
-        react: function(node, output, state) {
-          return <code key={state.key} className={css(ST.code)}>
-            {node.content}
-          </code>;
-        },
-      },
-      hr: {
-        ...SimpleMarkdown.defaultRules.hr,
-        react: function(node, output, state) {
-          return <hr key={state.key} className={css(ST.hr)} />;
-        },
-      },
-    };
-
-    const rawBuiltParser = SimpleMarkdown.parserFor(rules);
-    const parse = function(source) {
-        const blockSource = source + "\n\n";
-        return rawBuiltParser(blockSource, {inline: false});
-    };
-
-    const mdOutput = SimpleMarkdown.reactFor(
-      SimpleMarkdown.ruleOutput(rules, "react"));
 
     const syntaxTree = parse(markdownContent);
 
