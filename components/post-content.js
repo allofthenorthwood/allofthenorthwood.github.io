@@ -26,11 +26,12 @@ const classNamedSimpleMarkdownRules = mapObject(
         if (typeof element == "string") {
           return element;
         }
+        const classType = type === "heading" ? element.type : type;
 
         const propClassName = element.props && element.props.className;
         const newClassName = propClassName ?
-          css(ST[type]) + " " + propClassName :
-          css(ST[type]);
+          css(ST[classType]) + " " + propClassName :
+          css(ST[classType]);
 
         return <element.type
           {...element.props}
