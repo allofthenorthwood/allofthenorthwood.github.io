@@ -238,7 +238,7 @@ const ST = StyleSheet.create({
   // widgets
   synesthesia: {
     fontFamily: SS.font.sansFamily,
-    height: 365,
+    minHeight: 365,
     position: "relative",
   },
 });
