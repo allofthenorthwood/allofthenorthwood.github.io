@@ -12,11 +12,11 @@ Below is a widget where you can see my colors and play around with making your o
 
 [[@ synesthesia]]
 
-The project is on [GitHub](https://github.com/allofthenorthwood/synesthesia) and there's also a [blank template](http://allofthenorthwood.github.io/synesthesia/) that you can start from, which is probably a good idea if you have grapheme-to-color synesthesia and want to make full set without dealing wtih my obviously-wrong colors. :)
+The project is on [GitHub](https://github.com/allofthenorthwood/synesthesia) and there's also a [blank template](http://allofthenorthwood.github.io/synesthesia/) that you can start from, which is probably a good idea if you have grapheme-to-color synesthesia and want to make full set without dealing with my obviously-wrong colors. :)
 
 People have tried compiling data for which colors people associate with each letter and number, and it [yields some interesting patterns](http://www.musanim.com/synesthesia/).
 
-This trait isn't always helpful, and it often causes me to remember the color pattern for a particular word instead of the actual spelling or sound. For example, I have a terrible time keeping names that begin with the letters "Ka" straight – like Karina, Karen, Katrina, Katerina, Katherine, etc. – because I rely so heaily on the colors instead of the sound.
+This trait isn't always helpful, and it often causes me to remember the color pattern for a particular word instead of the actual spelling or sound. For example, I have a terrible time keeping names that begin with the letters "Ka" straight – like Karina, Karen, Katrina, Katerina, Katherine, etc. – because I rely so heavily on the colors instead of the sound.
 
 I also have a lot of trouble with words that are strongly associated with colors. For example, words like "tomato", "olive", and "celery" are conveniently composed of letters that are similar to the color of the food they signify, so it makes sense that when I think "tomato" I think red. But a word like "zucchini" still makes me think of green, and "sky" makes me think of blue. When I see the word written down I see each letter's color, but the concept of "sky" goes beyond the letters. For names though, all I have is the spelling, and thus a name like "Mark" is very red, and a name like "Lily" is very yellow.
 
