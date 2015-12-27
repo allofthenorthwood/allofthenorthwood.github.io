@@ -11,10 +11,6 @@ var config = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-
-      // There is not need to run the loader through
-      // vendors
-      exclude: [node_modules_dir],
       loader: 'babel-loader'
     }]
   },
