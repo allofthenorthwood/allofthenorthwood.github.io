@@ -107,6 +107,9 @@ const ST = StyleSheet.create({
     margin: "0 auto",
     maxWidth: SS.layout.maxWidth,
     padding: `0 ${SS.layout.padding}px`,
+    [SS.queries.small]: {
+      padding: SS.layout.padding,
+    },
   },
 
   next: {
@@ -155,6 +158,11 @@ const ST = StyleSheet.create({
     ":focus": {
       opacity: 0.7,
       textDecoration: "none",
+    },
+    [SS.queries.small]: {
+      fontSize: SS.font.smallSize,
+      padding: 10,
+      width: "100%",
     },
   },
   linkText: {

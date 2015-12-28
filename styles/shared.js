@@ -15,10 +15,13 @@ const font = {
   largestSize: 50,
   largerSize: 40,
   largeSize: 30,
+  titleSizeMobile: 24,
   largeLineHeight: 1.2,
   contentSize: 20,
+  contentSizeMobile: 16,
   mediumSize: 16,
   smallSize: 14,
+  smallSizeMobile: 12,
   lineHeight: 1.6,
 };
 const layout = {
@@ -72,6 +75,13 @@ const funLinkUnderline = {
   }
 };
 
+const queries = {
+  small: '@media (max-width: 500px)',
+  medium: '@media (max-width: 767px) and (min-width: 501px)',
+  large: '@media (max-width: 768px) and (min-width: 1023px)',
+  xlarge: '@media (min-width: 1024px)',
+};
+
 module.exports = {
   accentText,
   color,
@@ -79,4 +89,5 @@ module.exports = {
   funLinkUnderline,
   layout,
   link,
+  queries,
 };

@@ -42,7 +42,7 @@ const PostSummary = React.createClass({
             className={css(ST.titleLink)}
             to={`/post/${link ? link : slug}`}
           >
-            {title}
+            {title.trim().replace(/ ([^ ]+)$/, '\u00a0$1')}
           </Link>
         </h2>
         <div className={css(ST.date)}>
@@ -81,6 +81,9 @@ const ST = StyleSheet.create({
     margin: "0 auto",
     maxWidth: SS.layout.maxWidth,
     textAlign: "center",
+    [SS.queries.small]: {
+      fontSize: SS.font.titleSizeMobile,
+    },
   },
   titleLink: {
     color: SS.color.greenLight,
@@ -95,6 +98,9 @@ const ST = StyleSheet.create({
   date: {
     ...SS.accentText,
     textAlign: "center",
+    [SS.queries.small]: {
+      fontSize: SS.font.smallSizeMobile,
+    },
   },
   post: {
     padding: `0 ${SS.layout.padding}px`,
@@ -103,6 +109,9 @@ const ST = StyleSheet.create({
     fontSize: SS.font.contentSize,
     margin: "0 auto",
     maxWidth: SS.layout.maxWidth,
+    [SS.queries.small]: {
+      fontSize: SS.font.contentSizeMobile,
+    },
   },
   postLink: {
     textAlign: "right",

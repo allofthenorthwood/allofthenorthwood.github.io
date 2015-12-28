@@ -78,6 +78,10 @@ const ST = StyleSheet.create({
   headerImage: {
     marginTop: 30,
     width: 120,
+    [SS.queries.small]: {
+      marginTop: 0,
+      width: 90,
+    },
   },
   alignContent: {
     margin: "20px auto 0",
@@ -90,11 +94,17 @@ const ST = StyleSheet.create({
   title: {
     fontSize: SS.font.largestSize,
     lineHeight: SS.font.largeLineHeight,
+    [SS.queries.small]: {
+      fontSize: SS.font.largerSize,
+    },
   },
   divider: {
     borderTop: `1px solid ${SS.color.greyLight}`,
     margin: "40px auto",
     width: 50,
+    [SS.queries.small]: {
+      margin: "20px auto",
+    },
   },
   tagLine: {
     ...SS.accentText,

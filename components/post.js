@@ -44,7 +44,7 @@ const Post = React.createClass({
         <HomeButton />
         <div className={css(ST.headerContent)}>
           <h1 className={css(ST.title)}>
-            {title}
+            {title.trim().replace(/ ([^ ]+)$/, '\u00a0$1')}
           </h1>
           <div className={css(ST.date)}>
             {date}
@@ -67,12 +67,19 @@ const ST = StyleSheet.create({
     margin: "20px auto 60px",
     maxWidth: SS.layout.maxWidth,
     padding: `0 ${SS.layout.padding}px`,
+    [SS.queries.small]: {
+      marginBottom: 30,
+    },
   },
   title: {
     fontSize: SS.font.largerSize,
     lineHeight: SS.font.largeLineHeight,
     paddingTop: 70,
     textAlign: "center",
+    [SS.queries.small]: {
+      fontSize: SS.font.titleSizeMobile,
+      paddingTop: 30,
+    },
   },
   date: {
     color: SS.color.grey,
@@ -80,6 +87,9 @@ const ST = StyleSheet.create({
     fontSize: SS.font.smallSize,
     textAlign: "center",
     textTransform: "uppercase",
+    [SS.queries.small]: {
+      fontSize: SS.font.smallSizeMobile,
+    },
   },
   post: {
     padding: `0 ${SS.layout.padding}px 100px`,
@@ -88,6 +98,9 @@ const ST = StyleSheet.create({
     fontSize: SS.font.contentSize,
     margin: "0 auto",
     maxWidth: SS.layout.maxWidth,
+    [SS.queries.small]: {
+      fontSize: SS.font.contentSizeMobile,
+    },
   },
 });
 
