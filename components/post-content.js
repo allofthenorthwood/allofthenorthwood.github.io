@@ -4,7 +4,7 @@ import React from "react";
 import SimpleMarkdown from "simple-markdown";
 import { StyleSheet, css } from "../lib/aphrodite.js";
 
-import Synesthesia from "../lib/synesthesia/app.jsx";
+import Synesthesia from "../widgets/synesthesia/app.jsx";
 
 import SS from "../styles/shared.js";
 
