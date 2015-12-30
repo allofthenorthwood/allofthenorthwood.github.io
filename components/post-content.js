@@ -97,7 +97,6 @@ const rules = {
         synesthesia: Synesthesia,
         mathfactsyearcalendar: MathFactsYearCalendar,
       };
-      console.log(node.widgetType)
       const Component = components[node.widgetType];
       return <div key={state.key} className={css(ST[node.widgetType])}>
         <Component />
