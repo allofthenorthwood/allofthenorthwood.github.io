@@ -4,6 +4,7 @@ import React from "react";
 import SimpleMarkdown from "simple-markdown";
 import { StyleSheet, css } from "../lib/aphrodite.js";
 
+import MathFactsYearCalendar from "../widgets/math-facts-year-calendar.jsx";
 import Synesthesia from "../widgets/synesthesia/app.jsx";
 
 import SS from "../styles/shared.js";
@@ -94,7 +95,9 @@ const rules = {
     react: function(node, output, state) {
       const components = {
         synesthesia: Synesthesia,
+        mathfactsyearcalendar: MathFactsYearCalendar,
       };
+      console.log(node.widgetType)
       const Component = components[node.widgetType];
       return <div key={state.key} className={css(ST[node.widgetType])}>
         <Component />
