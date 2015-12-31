@@ -1,5 +1,5 @@
 module.exports = [
-  {
+  /*{
     date: "December 31, 2015",
     title: "Math Facts: Summary of 2015",
     slug: "math-facts-2015",
@@ -7,7 +7,7 @@ module.exports = [
     tags: [
       "math-facts",
     ],
-  },
+  },*/
   {
     date: "December 26, 2015",
     title: "Synesthesia: Reading in color",
