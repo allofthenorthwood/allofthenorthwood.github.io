@@ -11,6 +11,7 @@ const SC = {
   squareSize: 12,
   squareMargin: 1,
 };
+SC.totalSquareSize = SC.squareSize + 2 * SC.squareMargin;
 
 const mathFactsCommitsByDay = () => {
   const parsed = [];
@@ -39,14 +40,16 @@ const Day = (props) => {
     )}
   />;
 };
+
 const MathFactsYearCalendar = React.createClass({
   render: function () {
-    const dateMoment = moment("2015-01-01");
-
+    const startDate = "2015-01-01";
+    const dayMoment = moment(startDate);
+    const yearStartsOn = dayMoment.dayOfYear();
     const dayOutput = [];
-    while (dateMoment.year() === 2015) {
-      const dayOfYear = dateMoment.dayOfYear();
-      const dayOfWeek = dateMoment.day();
+    while (dayMoment.year() === 2015) {
+      const dayOfYear = dayMoment.dayOfYear();
+      const dayOfWeek = dayMoment.day();
 
       if (dayOfYear === 1) {
         dayOutput.push(<div
@@ -64,16 +67,52 @@ const MathFactsYearCalendar = React.createClass({
           key={dayOfYear}
         />);
 
-      dateMoment.add(1, "day");
+      dayMoment.add(1, "day");
     }
 
-    return <div className={css(ST.dateSquares)}>
-      {dayOutput}
+    const monthMoment = moment(startDate);
+    const monthOutput = [];
+    let prevWeek = 1;
+    for (let i = 0; i < 12; i++) {
+      const week = monthMoment.week();
+      const marginTop = (week - prevWeek - 1) * SC.totalSquareSize;
+      monthOutput.push(<div
+        className={css(ST.month)}
+        key={i}
+        style={{marginTop: i === 0 ? 0 : marginTop}}
+      >
+        {monthMoment.format("MMM")}
+      </div>);
+      prevWeek = monthMoment.week();
+      monthMoment.add(1, "month");
+    }
+
+    return <div className={css(ST.wrapper)}>
+      <div className={css(ST.months)}>
+        {monthOutput}
+      </div>
+      <div className={css(ST.dateSquares)}>
+        {dayOutput}
+      </div>
     </div>;
   },
 });
 
 const ST = StyleSheet.create({
+  wrapper: {
+    display: "flex",
+  },
+  //Months
+  months: {
+    marginRight: 5,
+    textAlign: "right",
+  },
+  month:{
+    ...SS.accentText,
+    lineHeight: `${SC.totalSquareSize}px`,
+    textTransform: "capitalize",
+  },
+  // Days
   dateSquares: {
     lineHeight: `${SC.squareSize}px`,
     width: (SC.squareSize * 7) + (SC.squareMargin * (7 + 1) * 2),
