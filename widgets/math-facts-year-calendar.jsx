@@ -4,6 +4,7 @@ import moment from "moment";
 import React from "react";
 import { StyleSheet, css } from "../lib/aphrodite.js";
 
+import mathFactsCommits from "./math-facts-commits.js";
 import SS from "../styles/shared.js";
 
 const SC = {

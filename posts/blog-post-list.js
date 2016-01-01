@@ -5,7 +5,7 @@ module.exports = [
     slug: "math-facts-2015",
     url: "../posts/math-facts-2015.md",
     tags: [
-      "math-facts",
+      "math facts",
     ],
   },*/
   {
