@@ -12,6 +12,7 @@ const SC = {
   squareMargin: 1,
 };
 SC.totalSquareSize = SC.squareSize + 2 * SC.squareMargin;
+SC.dateSquaresWidth = (SC.squareSize * 7) + (SC.squareMargin * (7 + 1) * 2);
 
 const mathFactsCommitsByDay = () => {
   const parsed = [];
@@ -38,39 +39,45 @@ const Day = (props) => {
       ST.dateSquare,
       colorStyle
     )}
+    onClick={() => {
+      props.setActiveDay(props.date)
+    }}
   />;
 };
 
-const MathFactsYearCalendar = React.createClass({
-  render: function () {
-    const startDate = "2015-01-01";
-    const dayMoment = moment(startDate);
-    const yearStartsOn = dayMoment.dayOfYear();
-    const dayOutput = [];
-    while (dayMoment.year() === 2015) {
-      const dayOfYear = dayMoment.dayOfYear();
-      const dayOfWeek = dayMoment.day();
+const Days = (props) => {
+  const dayMoment = moment(props.startDate);
+  const yearStartsOn = dayMoment.dayOfYear();
+  const dayOutput = [];
+  while (dayMoment.year() === 2015) {
+    const dayOfYear = dayMoment.dayOfYear();
+    const dayOfWeek = dayMoment.day();
 
-      if (dayOfYear === 1) {
-        dayOutput.push(<div
-          className={css(ST.dateSquareSpacer)}
-          key={0}
-          style={{
-            width: dayOfWeek * SC.squareSize +
-              (dayOfWeek - 1) * SC.squareMargin * 2
-          }}
-        />);
-      }
-
-      dayOutput.push(<Day
-          date={dayOfYear}
-          key={dayOfYear}
-        />);
-
-      dayMoment.add(1, "day");
+    if (dayOfYear === 1) {
+      dayOutput.push(<div
+        className={css(ST.dateSquareSpacer)}
+        key={0}
+        style={{
+          width: dayOfWeek * SC.squareSize +
+            (dayOfWeek - 1) * SC.squareMargin * 2
+        }}
+      />);
     }
 
-    const monthMoment = moment(startDate);
+    dayOutput.push(<Day
+        date={dayOfYear}
+        key={dayOfYear}
+        setActiveDay={props.setActiveDay}
+      />);
+
+    dayMoment.add(1, "day");
+  }
+
+  return <div className={css(ST.dateSquares)}>{dayOutput}</div>;
+};
+
+const Months = (props) => {
+    const monthMoment = moment(props.startDate);
     const monthOutput = [];
     let prevWeek = 1;
     for (let i = 0; i < 12; i++) {
@@ -86,14 +93,41 @@ const MathFactsYearCalendar = React.createClass({
       prevWeek = monthMoment.week();
       monthMoment.add(1, "month");
     }
+    return <div className={css(ST.months)}>{monthOutput}</div>;
+};
 
+const Commits = (props) => {
+  const commits = mathFactsCommitsByDay[props.day] || [];
+  const day = moment(`${props.day} 2015`, "DDD YYYY").format("MMM D, YYYY")
+  return <div className={css(ST.commits)}>
+    <h3 className={css(ST.h3)}>Commits from {day}</h3>
+    <ul className={css(ST.commitList)}>
+    {commits.map((commit, idx) => {
+      return <li key={idx} className={css(ST.commit)}>
+        {commit.commit.message}
+      </li>
+    })}
+    </ul>
+  </div>;
+};
+
+const MathFactsYearCalendar = React.createClass({
+  getInitialState: function() {
+    return {
+      activeDay: null,
+    };
+  },
+  setActiveDay: function(day) {
+    this.setState({
+      activeDay: day,
+    });
+  },
+  render: function() {
+    const startDate = "2015-01-01";
     return <div className={css(ST.wrapper)}>
-      <div className={css(ST.months)}>
-        {monthOutput}
-      </div>
-      <div className={css(ST.dateSquares)}>
-        {dayOutput}
-      </div>
+      <Months startDate={startDate} />
+      <Days startDate={startDate} setActiveDay={this.setActiveDay}/>
+      {this.state.activeDay && <Commits day={this.state.activeDay}/>}
     </div>;
   },
 });
@@ -102,7 +136,22 @@ const ST = StyleSheet.create({
   wrapper: {
     display: "flex",
   },
-  //Months
+  // Commits
+  commits: {
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+  h3: {
+    fontSize: SS.font.contentSize,
+  },
+  commitList: {
+    paddingLeft: "1em",
+  },
+  commit: {
+    fontSize: SS.font.mediumSize,
+    listStyle: "disc",
+  },
+  // Months
   months: {
     marginRight: 5,
     textAlign: "right",
@@ -114,14 +163,18 @@ const ST = StyleSheet.create({
   },
   // Days
   dateSquares: {
+    flex: 0,
     lineHeight: `${SC.squareSize}px`,
-    width: (SC.squareSize * 7) + (SC.squareMargin * (7 + 1) * 2),
+    minWidth: SC.dateSquaresWidth,
   },
   dateSquare: {
     display: "inline-block",
     height: SC.squareSize,
     margin: SC.squareMargin,
     width: SC.squareSize,
+    ":hover": {
+      opacity: 0.7,
+    },
   },
   dateSquareColor0: {
     background: '#eeeeee'
