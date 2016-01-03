@@ -103,8 +103,11 @@ const Commits = (props) => {
     <h3 className={css(ST.h3)}>Commits from {day}</h3>
     <ul className={css(ST.commitList)}>
     {commits.map((commit, idx) => {
+      const rawMessage = commit.commit.message;
+      const splitMessage = rawMessage.split("\n\n");
+      const message = splitMessage[0] ? splitMessage[0] : rawMessage;
       return <li key={idx} className={css(ST.commit)}>
-        {commit.commit.message}
+        {message}
       </li>
     })}
     </ul>
