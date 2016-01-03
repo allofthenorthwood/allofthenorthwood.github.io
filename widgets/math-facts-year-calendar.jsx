@@ -9,10 +9,10 @@ import SS from "../styles/shared.js";
 
 const SC = {
   squareSize: 12,
-  squareMargin: 1,
+  squarePadding: 1,
 };
-SC.totalSquareSize = SC.squareSize + 2 * SC.squareMargin;
-SC.dateSquaresWidth = (SC.squareSize * 7) + (SC.squareMargin * (7 + 1) * 2);
+SC.totalSquareSize = SC.squareSize + 2 * SC.squarePadding;
+SC.dateSquaresWidth = (SC.squareSize * 7) + (SC.squarePadding * (7 + 1) * 2);
 
 const mathFactsCommitsByDay = () => {
   const parsed = [];
@@ -39,9 +39,6 @@ const Day = (props) => {
       ST.dateSquare,
       colorStyle
     )}
-    onClick={() => {
-      props.setActiveDay(props.date)
-    }}
   />;
 };
 
@@ -59,16 +56,29 @@ const Days = (props) => {
         key={0}
         style={{
           width: dayOfWeek * SC.squareSize +
-            (dayOfWeek - 1) * SC.squareMargin * 2
+            (dayOfWeek - 1) * SC.squarePadding * 2
         }}
       />);
     }
 
-    dayOutput.push(<Day
-        date={dayOfYear}
+    dayOutput.push(<div
+        className={css(ST.dateSquareWrapper)}
         key={dayOfYear}
-        setActiveDay={props.setActiveDay}
-      />);
+        onClick={() => {
+          props.setActiveDay(dayOfYear)
+        }}
+        onMouseOver={() => {
+          props.setHoverDay(dayOfYear)
+        }}
+        onMouseOut={() => {
+          props.setHoverDay(null)
+        }}
+      >
+        <Day
+          date={dayOfYear}
+        />
+      </div>
+    );
 
     dayMoment.add(1, "day");
   }
@@ -118,6 +128,7 @@ const MathFactsYearCalendar = React.createClass({
   getInitialState: function() {
     return {
       activeDay: null,
+      hoverDay: null,
     };
   },
   setActiveDay: function(day) {
@@ -125,12 +136,26 @@ const MathFactsYearCalendar = React.createClass({
       activeDay: day,
     });
   },
+  setHoverDay: function(day) {
+    this.setState({
+      hoverDay: day,
+    });
+  },
   render: function() {
     const startDate = "2015-01-01";
+    const {
+      activeDay,
+      hoverDay,
+    } = this.state;
+    const highlightDay = activeDay ? activeDay : hoverDay;
     return <div className={css(ST.wrapper)}>
       <Months startDate={startDate} />
-      <Days startDate={startDate} setActiveDay={this.setActiveDay}/>
-      {this.state.activeDay && <Commits day={this.state.activeDay}/>}
+      <Days
+        startDate={startDate}
+        setActiveDay={this.setActiveDay}
+        setHoverDay={this.setHoverDay}
+      />
+      {highlightDay && <Commits day={highlightDay}/>}
     </div>;
   },
 });
@@ -166,18 +191,23 @@ const ST = StyleSheet.create({
   },
   // Days
   dateSquares: {
+    display: "flex",
     flex: 0,
+    flexWrap: "wrap",
     lineHeight: `${SC.squareSize}px`,
     minWidth: SC.dateSquaresWidth,
   },
-  dateSquare: {
-    display: "inline-block",
-    height: SC.squareSize,
-    margin: SC.squareMargin,
-    width: SC.squareSize,
+  dateSquareWrapper: {
+    flex: 0,
+    lineHeight: `${SC.totalSquareSize}px`,
+    padding: SC.squarePadding,
     ":hover": {
       opacity: 0.7,
     },
+  },
+  dateSquare: {
+    height: SC.squareSize,
+    width: SC.squareSize,
   },
   dateSquareColor0: {
     background: '#eeeeee'
@@ -198,7 +228,7 @@ const ST = StyleSheet.create({
     background: 'transparent',
     display: "inline-block",
     height: SC.squareSize,
-    margin: SC.squareMargin,
+    margin: SC.squarePadding,
   },
 });
 
