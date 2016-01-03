@@ -39,13 +39,13 @@ const Day = (props) => {
   const commits = mathFactsCommitsByDay[day];
   const color = Math.min(commits ? Math.ceil(commits.length / 2) : 0, 4);
   const colorStyle = ST[`dateSquareColor${color}`];
-  const opacity = hoverDay == null ?
-    (activeDay == null ? 1 : activeDay === day ? 1 : 0.5) :
-    (hoverDay === day ? 1 : (activeDay === day ? 1 : 0.5))
+  const opacity = activeDay == null ? 1 :
+    (day === hoverDay ? 1 : (day === activeDay ? 1 : 0.5));
+
   return <div
     className={css(ST.dateSquareWrapper)}
     onClick={() => {
-      props.setActiveDay(day)
+      props.setActiveDay(day === activeDay ? null : day)
     }}
     onMouseOver={() => {
       props.setHoverDay(day)
