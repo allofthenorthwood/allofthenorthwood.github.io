@@ -31,19 +31,30 @@ const mathFactsCommitsByDay = () => {
 }();
 
 const Day = (props) => {
-  const commits = mathFactsCommitsByDay[props.date];
+  const {
+    activeDay,
+    day,
+    hoverDay,
+  } = props;
+  const commits = mathFactsCommitsByDay[day];
   const color = Math.min(commits ? Math.ceil(commits.length / 2) : 0, 4);
   const colorStyle = ST[`dateSquareColor${color}`];
+  const opacity = hoverDay == null ?
+    (activeDay == null ? 1 : activeDay === day ? 1 : 0.5) :
+    (hoverDay === day ? 1 : (activeDay === day ? 1 : 0.5))
   return <div
     className={css(ST.dateSquareWrapper)}
     onClick={() => {
-      props.setActiveDay(props.date)
+      props.setActiveDay(day)
     }}
     onMouseOver={() => {
-      props.setHoverDay(props.date)
+      props.setHoverDay(day)
     }}
     onMouseOut={() => {
       props.setHoverDay(null)
+    }}
+    style={{
+      opacity: opacity,
     }}
   >
     <div
@@ -51,6 +62,9 @@ const Day = (props) => {
         ST.dateSquare,
         colorStyle
       )}
+      style={{
+        borderWidth: hoverDay == null ? 0 : (hoverDay === day ? 1 : 0),
+      }}
     />
   </div>;
 };
@@ -75,7 +89,9 @@ const Days = (props) => {
     }
 
     dayOutput.push(<Day
-      date={dayOfYear}
+      activeDay={props.activeDay}
+      day={dayOfYear}
+      hoverDay={props.hoverDay}
       key={dayOfYear}
       setActiveDay={props.setActiveDay}
       setHoverDay={props.setHoverDay}
@@ -152,6 +168,8 @@ const MathFactsYearCalendar = React.createClass({
     return <div className={css(ST.wrapper)}>
       <Months startDate={startDate} />
       <Days
+        activeDay={activeDay}
+        hoverDay={hoverDay}
         startDate={startDate}
         setActiveDay={this.setActiveDay}
         setHoverDay={this.setHoverDay}
@@ -202,11 +220,11 @@ const ST = StyleSheet.create({
     flex: 0,
     lineHeight: `${SC.totalSquareSize}px`,
     padding: SC.squarePadding,
-    ":hover": {
-      opacity: 0.7,
-    },
   },
   dateSquare: {
+    borderColor: SS.color.black,
+    borderStyle: "solid",
+    boxSizing: "border-box",
     height: SC.squareSize,
     width: SC.squareSize,
   },
