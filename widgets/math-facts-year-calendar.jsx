@@ -35,11 +35,24 @@ const Day = (props) => {
   const color = Math.min(commits ? Math.ceil(commits.length / 2) : 0, 4);
   const colorStyle = ST[`dateSquareColor${color}`];
   return <div
-    className={css(
-      ST.dateSquare,
-      colorStyle
-    )}
-  />;
+    className={css(ST.dateSquareWrapper)}
+    onClick={() => {
+      props.setActiveDay(props.date)
+    }}
+    onMouseOver={() => {
+      props.setHoverDay(props.date)
+    }}
+    onMouseOut={() => {
+      props.setHoverDay(null)
+    }}
+  >
+    <div
+      className={css(
+        ST.dateSquare,
+        colorStyle
+      )}
+    />
+  </div>;
 };
 
 const Days = (props) => {
@@ -61,24 +74,12 @@ const Days = (props) => {
       />);
     }
 
-    dayOutput.push(<div
-        className={css(ST.dateSquareWrapper)}
-        key={dayOfYear}
-        onClick={() => {
-          props.setActiveDay(dayOfYear)
-        }}
-        onMouseOver={() => {
-          props.setHoverDay(dayOfYear)
-        }}
-        onMouseOut={() => {
-          props.setHoverDay(null)
-        }}
-      >
-        <Day
-          date={dayOfYear}
-        />
-      </div>
-    );
+    dayOutput.push(<Day
+      date={dayOfYear}
+      key={dayOfYear}
+      setActiveDay={props.setActiveDay}
+      setHoverDay={props.setHoverDay}
+    />);
 
     dayMoment.add(1, "day");
   }
