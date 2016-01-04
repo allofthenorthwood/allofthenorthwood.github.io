@@ -125,7 +125,7 @@ const Months = (props) => {
 
 const Commits = (props) => {
   const commits = mathFactsCommitsByDay[props.day] || [];
-  const day = moment(`${props.day} 2015`, "DDD YYYY").format("MMM D, YYYY")
+  const day = moment(`${props.day} 2015`, "DDD YYYY").format("dddd MMM D, YYYY")
   return <div className={css(ST.commits)}>
     <h3 className={css(ST.h3)}>Commits from {day}</h3>
     <ul className={css(ST.commitList)}>
@@ -164,6 +164,7 @@ const MathFactsYearCalendar = React.createClass({
       activeDay,
       hoverDay,
     } = this.state;
+    // TODO: only re-render the things that change
     const highlightDay = activeDay ? activeDay : hoverDay;
     return <div className={css(ST.wrapper)}>
       <Months startDate={startDate} />
