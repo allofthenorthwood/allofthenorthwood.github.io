@@ -141,12 +141,27 @@ const Commits = (props) => {
   </div>;
 };
 
+const WeekMarkers = (props) => {
+  weekMarkersOutput = props.weekMarkers.map((weekMarker, i) => {
+    return <div className={css(ST.weekMarker)} key={i}>
+      {props.hideTitles ? '' : weekMarker.title}
+    </div>;
+  });
+  return <div className={css(ST.weekMarkers)}>
+    {weekMarkersOutput}
+  </div>;
+};
+
 const MathFactsYearCalendar = React.createClass({
   getInitialState: function() {
     return {
       activeDay: null,
       hoverDay: null,
     };
+  },
+  componentWillMount: function() {
+    const weekMarkers = [];
+    this.weekMarkers = weekMarkers;
   },
   setActiveDay: function(day) {
     this.setState({
@@ -175,6 +190,7 @@ const MathFactsYearCalendar = React.createClass({
         setActiveDay={this.setActiveDay}
         setHoverDay={this.setHoverDay}
       />
+      <WeekMarkers weekMarkers={this.weekMarkers} hideTitles={highlightDay}/>
       {highlightDay && <Commits day={highlightDay}/>}
     </div>;
   },
