@@ -161,6 +161,51 @@ const MathFactsYearCalendar = React.createClass({
   },
   componentWillMount: function() {
     const weekMarkers = [];
+    const format = "MMM D YYYY";
+    weekMarkers[moment("Apr 16 2015", format).week()] = {
+      title: "Build prototype and submit project proposal",
+      nWeeks: 1,
+    };
+    weekMarkers[moment("Apr 26 2015", format).week()] = {
+      title: "5-week project: build basic functionality and test at KLS",
+      nWeeks: 5,
+    };
+    weekMarkers[moment("Jun 7 2015", format).week()] = {
+      title: "Minor clean-up",
+      nWeeks: 1,
+    };
+    weekMarkers[moment("Aug 20 2015", format).week()] = {
+      title: "Math facts follow-up meeting (Aug 20)",
+      nWeeks: 1,
+    };
+    weekMarkers[moment("Sep 27 2015", format).week()] = {
+      title: "Add Firebase and internal download page",
+      nWeeks: 1,
+    };
+    weekMarkers[moment("Oct 4 2015", format).week()] = {
+      title: "Test with KLS students every day",
+      nWeeks: 3,
+    };
+    weekMarkers[moment("Oct 25 2015", format).week()] = {
+      title: "Another math facts follow-up meeting (Nov 4), and started working with Matt",
+      nWeeks: 1,
+    };
+    weekMarkers[moment("Nov 1 2015", format).week()] = {
+      title: "Start blogging and writing down what happened with the math facts project",
+      nWeeks: 2,
+    };
+    weekMarkers[moment("Nov 15 2015", format).week()] = {
+      title: "Set up test flight and make continuous improvements to the app",
+      nWeeks: 2,
+    };
+    weekMarkers[moment("Dec 1 2015", format).week()] = {
+      title: "Make plan for larger beta-testing rollout",
+      nWeeks: 2,
+    };
+    weekMarkers[moment("Dec 15 2015", format).week()] = {
+      title: "Start making this chart and writing this blog post",
+      nWeeks: 2,
+    };
     this.weekMarkers = weekMarkers;
   },
   setActiveDay: function(day) {
@@ -214,6 +259,10 @@ const ST = StyleSheet.create({
   commit: {
     fontSize: SS.font.mediumSize,
     listStyle: "disc",
+  },
+  // Week markers
+  weekMarkers: {
+    marginLeft: 10,
   },
   // Months
   months: {
