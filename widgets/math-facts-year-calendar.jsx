@@ -100,7 +100,9 @@ const Days = (props) => {
     dayMoment.add(1, "day");
   }
 
-  return <div className={css(ST.dateSquares)}>{dayOutput}</div>;
+  return <div className={css(ST.dateSquaresWrapper)}>
+    <div className={css(ST.dateSquares)}>{dayOutput}</div>
+  </div>;
 };
 
 const Months = (props) => {
@@ -289,12 +291,14 @@ const ST = StyleSheet.create({
     height: `${SC.totalSquareSize}px`,
   },
   // Days
+  dateSquaresWrapper: {
+    flex: 0,
+    minWidth: SC.dateSquaresWidth,
+  },
   dateSquares: {
     display: "flex",
-    flex: 0,
     flexWrap: "wrap",
     lineHeight: `${SC.squareSize}px`,
-    minWidth: SC.dateSquaresWidth,
   },
   dateSquareWrapper: {
     flex: 0,
