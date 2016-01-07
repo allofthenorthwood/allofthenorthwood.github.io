@@ -8,6 +8,42 @@ import Icon from "../components/icon.js";
 import mathFactsCommits from "./math-facts-commits.js";
 import SS from "../styles/shared.js";
 
+// from http://underscorejs.org/docs/underscore.html
+const _now = Date.now || function() {
+  return new Date().getTime();
+};
+const _throttle = function(func, wait, options) {
+  var context, args, result;
+  var timeout = null;
+  var previous = 0;
+  if (!options) options = {};
+  var later = function() {
+    previous = options.leading === false ? 0 : _now();
+    timeout = null;
+    result = func.apply(context, args);
+    if (!timeout) context = args = null;
+  };
+  return function() {
+    var now = _now();
+    if (!previous && options.leading === false) previous = now;
+    var remaining = wait - (now - previous);
+    context = this;
+    args = arguments;
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout);
+        timeout = null;
+      }
+      previous = now;
+      result = func.apply(context, args);
+      if (!timeout) context = args = null;
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(later, remaining);
+    }
+    return result;
+  };
+};
+
 const SC = {
   squareSize: 12,
   squarePadding: 1,
@@ -31,80 +67,116 @@ const mathFactsCommitsByDay = () => {
   return parsed;
 }();
 
-const Day = (props) => {
-  const {
-    activeDay,
-    day,
-    hoverDay,
-  } = props;
-  const commits = mathFactsCommitsByDay[day];
-  const color = Math.min(commits ? Math.ceil(commits.length / 2) : 0, 4);
-  const colorStyle = ST[`dateSquareColor${color}`];
-  const opacity = activeDay == null ? 1 :
-    (day === hoverDay ? 1 : (day === activeDay ? 1 : 0.5));
+const Day = React.createClass({
+  getInitialState: function() {
+    return {
+      hover: false,
+    };
+  },
+  setHover: function(hoverState) {
+    this.setState({
+      hover: hoverState,
+    });
+  },
+  render: function() {
+    const {
+      activeDay,
+      day,
+      hoverDay,
+    } = this.props;
+    const {
+      hover,
+    } = this.state;
+    const commits = mathFactsCommitsByDay[day];
+    const color = Math.min(commits ? Math.ceil(commits.length / 2) : 0, 4);
+    const colorStyle = ST[`dateSquareColor${color}`];
+    const opacity = activeDay == null ? 1 :
+      (hover ? 1 : (day === activeDay ? 1 : 0.5));
 
-  return <div
-    className={css(ST.dateSquareWrapper)}
-    onClick={() => {
-      props.setActiveDay(day === activeDay ? null : day)
-    }}
-    onMouseOver={() => {
-      props.setHoverDay(day)
-    }}
-    onMouseOut={() => {
-      props.setHoverDay(null)
-    }}
-    style={{
-      opacity: opacity,
-    }}
-  >
-    <div
-      className={css(
-        ST.dateSquare,
-        colorStyle
-      )}
-      style={{
-        borderWidth: hoverDay == null ? 0 : (hoverDay === day ? 1 : 0),
+    return <div
+      className={css(ST.dateSquareWrapper)}
+      onClick={() => {
+        this.props.setActiveDay(day === activeDay ? null : day)
       }}
-    />
-  </div>;
-};
-
-const Days = (props) => {
-  const dayMoment = moment(props.startDate);
-  const yearStartsOn = dayMoment.dayOfYear();
-  const dayOutput = [];
-  while (dayMoment.year() === 2015) {
-    const dayOfYear = dayMoment.dayOfYear();
-    const dayOfWeek = dayMoment.day();
-
-    if (dayOfYear === 1) {
-      dayOutput.push(<div
-        className={css(ST.dateSquareSpacer)}
-        key={0}
+      onMouseOver={() => {
+        this.setHover(day)
+        this.props.setHoverDay(commits ? day : null)
+      }}
+      onMouseOut={() => {
+        this.setHover(null)
+        this.props.setHoverDay(commits ? day : null)
+      }}
+      style={{
+        opacity: opacity,
+      }}
+    >
+      <div
+        className={css(
+          ST.dateSquare,
+          colorStyle
+        )}
         style={{
-          width: dayOfWeek * SC.squareSize +
-            (dayOfWeek - 1) * SC.squarePadding * 2
+          borderWidth: hover ? 1 : 0,
         }}
+      />
+    </div>;
+  },
+});
+
+const Days = React.createClass({
+  shouldComponentUpdate: function(nextProps, nextState) {
+    return this.props.activeDay !== nextProps.activeDay;
+  },
+  componentDidUpdate: function(oldProps) {
+    if (oldProps.hoverDay) {
+      this.refs[`week-${oldProps.hoverDay}`].setHover(false);
+    }
+    if (this.props.hoverDay) {
+      this.refs[`week-${oldProps.hoverDay}`].setHover(true);
+    }
+  },
+  render: function() {
+    const dayMoment = moment(this.props.startDate);
+    const yearStartsOn = dayMoment.dayOfYear();
+    const dayOutput = [];
+    while (dayMoment.year() === 2015) {
+      const dayOfYear = dayMoment.dayOfYear();
+      const dayOfWeek = dayMoment.day();
+
+      if (dayOfYear === 1) {
+        dayOutput.push(<div
+          className={css(ST.dateSquareSpacer)}
+          key={0}
+          style={{
+            width: dayOfWeek * SC.squareSize +
+              (dayOfWeek - 1) * SC.squarePadding * 2
+          }}
+        />);
+      }
+
+      dayOutput.push(<Day
+        activeDay={this.props.activeDay}
+        day={dayOfYear}
+        hoverDay={this.props.hoverDay}
+        key={dayOfYear}
+        ref={`week-${dayOfYear}`}
+        setActiveDay={this.props.setActiveDay}
+        setHoverDay={this.props.setHoverDay}
       />);
+
+      dayMoment.add(1, "day");
     }
 
-    dayOutput.push(<Day
-      activeDay={props.activeDay}
-      day={dayOfYear}
-      hoverDay={props.hoverDay}
-      key={dayOfYear}
-      setActiveDay={props.setActiveDay}
-      setHoverDay={props.setHoverDay}
-    />);
-
-    dayMoment.add(1, "day");
-  }
-
-  return <div className={css(ST.dateSquaresWrapper)}>
-    <div className={css(ST.dateSquares)}>{dayOutput}</div>
-  </div>;
-};
+    return <div
+      className={css(ST.dateSquaresWrapper)}
+      onMouseOut={() => {
+        this.props.setHoverDay(null)
+      }}
+    >
+      <div className={css(ST.dateSquares)}>{dayOutput}</div>
+    </div>;
+  },
+});
 
 const Months = (props) => {
   const monthMoment = moment(props.startDate);
@@ -167,19 +239,22 @@ const WeekMarkers = (props) => {
         className={css(ST.weekMarkerTitle)}
         style={{
           borderLeftColor: colors[curColor++],
+          flex: props.hideTitles ? 0 : 1,
         }}
       >
         {props.hideTitles ? '' : weekMarker.link ?
           <a href={weekMarker.link} className={css(ST.weekMarkerLink)}>
-            {weekMarker.title}
+            <span className={css(ST.weekMarkerLinkText)}>
+              {weekMarker.title}
+            </span>
+            <span className={css(ST.moreIcon)}>
+              <Icon
+                color={SS.color.green}
+                size={SC.totalSquareSize - 4}
+                type="angleBracketRight"
+              />
+            </span>
           </a> : weekMarker.title}
-        {weekMarker.link && <div className={css(ST.moreIcon)}>
-          <Icon
-            color={SS.color.green}
-            size={SC.totalSquareSize - 2}
-            type="angleBracketRight"
-          />
-        </div>}
       </div>
     </div>;
     prevWeek = week + (weekMarker.nWeeks - 1);
@@ -256,16 +331,19 @@ const MathFactsYearCalendar = React.createClass({
     };
     this.weekMarkers = weekMarkers;
   },
+  setHoverDay: _throttle(function(day) {
+    this.setState({
+      hoverDay: day
+    });
+  }, 100),
+
   setActiveDay: function(day) {
+    console.log('setting active')
     this.setState({
       activeDay: day,
     });
   },
-  setHoverDay: function(day) {
-    this.setState({
-      hoverDay: day,
-    });
-  },
+
   render: function() {
     const startDate = "2015-01-01";
     const {
@@ -295,6 +373,7 @@ const ST = StyleSheet.create({
   },
   // Commits
   commits: {
+    flex: 1,
     paddingLeft: 10,
     paddingRight: 10,
   },
@@ -310,11 +389,17 @@ const ST = StyleSheet.create({
     listStyle: "disc",
   },
   // Week markers
+  weekMarkers: {
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+  },
   weekMarker: {
     ...SS.accentText,
     boxSizing: "border-box",
+    fontSize: 12,
     lineHeight: `${SC.totalSquareSize}px`,
     padding: 1,
+    textTransform: "none",
   },
   weekMarkerTitle: {
     alignItems: "center",
@@ -326,15 +411,22 @@ const ST = StyleSheet.create({
   },
   weekMarkerLink: {
     color: SS.color.black,
+    display: "inline-block",
     paddingRight: 2,
     textDecoration: "none",
+    verticalAlign: "middle",
+  },
+  weekMarkerLinkText: {
+    paddingRight: 0,
     transition: "padding 0.2s",
     ":hover": {
       paddingRight: 5,
     },
   },
   moreIcon: {
-    paddingTop: 2,
+    display: "inline-block",
+    padding: 1,
+    verticalAlign: "middle",
   },
   // Months
   months: {
