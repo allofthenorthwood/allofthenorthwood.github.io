@@ -143,10 +143,18 @@ const Commits = (props) => {
 };
 
 const WeekMarkers = (props) => {
-  weekMarkersOutput = props.weekMarkers.map((weekMarker, i) => {
-    return <div className={css(ST.weekMarker)} key={i}>
+  let prevWeek = 0;
+  weekMarkersOutput = props.weekMarkers.map((weekMarker, week) => {
+    const marginTop = (week - prevWeek - 1) * SC.totalSquareSize;
+    const weekMarkerOutput = <div
+      className={css(ST.weekMarker)}
+      key={week}
+      style={{marginTop: marginTop < 0 ? 0 : marginTop}}
+    >
       {props.hideTitles ? '' : weekMarker.title}
     </div>;
+    prevWeek = week;
+    return weekMarkerOutput;
   });
   return <div className={css(ST.weekMarkers)}>
     {weekMarkersOutput}
@@ -163,7 +171,7 @@ const MathFactsYearCalendar = React.createClass({
   componentWillMount: function() {
     const weekMarkers = [];
     const format = "MMM D YYYY";
-    weekMarkers[moment("Apr 16 2015", format).week()] = {
+    weekMarkers[moment("Apr 23 2015", format).week()] = {
       title: "Build prototype and submit project proposal",
       nWeeks: 1,
     };
@@ -264,6 +272,11 @@ const ST = StyleSheet.create({
   // Week markers
   weekMarkers: {
     marginLeft: 10,
+  },
+  weekMarker: {
+    ...SS.accentText,
+    lineHeight: `${SC.totalSquareSize}px`,
+    height: `${SC.totalSquareSize}px`,
   },
   // Months
   months: {
