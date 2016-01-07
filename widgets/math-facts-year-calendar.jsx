@@ -104,23 +104,23 @@ const Days = (props) => {
 };
 
 const Months = (props) => {
-    const monthMoment = moment(props.startDate);
-    const monthOutput = [];
-    let prevWeek = 1;
-    for (let i = 0; i < 12; i++) {
-      const week = monthMoment.week();
-      const marginTop = (week - prevWeek - 1) * SC.totalSquareSize;
-      monthOutput.push(<div
-        className={css(ST.month)}
-        key={i}
-        style={{marginTop: i === 0 ? 0 : marginTop}}
-      >
-        {monthMoment.format("MMM")}
-      </div>);
-      prevWeek = monthMoment.week();
-      monthMoment.add(1, "month");
-    }
-    return <div className={css(ST.months)}>{monthOutput}</div>;
+  const monthMoment = moment(props.startDate);
+  const monthOutput = [];
+  let prevWeek = 1;
+  for (let i = 0; i < 12; i++) {
+    const week = monthMoment.week();
+    const marginTop = (week - prevWeek - 1) * SC.totalSquareSize;
+    monthOutput.push(<div
+      className={css(ST.month)}
+      key={i}
+      style={{marginTop: i === 0 ? 0 : marginTop}}
+    >
+      {monthMoment.format("MMM")}
+    </div>);
+    prevWeek = monthMoment.week();
+    monthMoment.add(1, "month");
+  }
+  return <div className={css(ST.months)}>{monthOutput}</div>;
 };
 
 const Commits = (props) => {
