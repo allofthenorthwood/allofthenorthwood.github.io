@@ -131,7 +131,7 @@ const Commits = (props) => {
   const day = moment(`${props.day} 2015`, "DDD YYYY")
     .format("dddd MMM D, YYYY");
   return <div className={css(ST.commits)}>
-    <h3 className={css(ST.h3)}>Commits from {day}</h3>
+    <h3 className={css(ST.commitsTitle)}>Commits from {day}</h3>
     <ul className={css(ST.commitList)}>
     {commits.map((commit, idx) => {
       const rawMessage = commit.commit.message;
@@ -298,7 +298,8 @@ const ST = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
   },
-  h3: {
+  commitsTitle: {
+    ...SS.accentText,
     fontSize: SS.font.contentSize,
   },
   commitList: {
