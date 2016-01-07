@@ -145,17 +145,29 @@ const Commits = (props) => {
 };
 
 const WeekMarkers = (props) => {
+  const colors = [
+    "#ff9797", "#ffc197", "#ffe597", "#fffb97", "#d9ff97", "#d9ff97",
+    "#a8ff97", "#97ffb7", "#97d4ff", "#bcacff", "#faa8ff",
+  ];
+  let curColor = 0;
   let prevWeek = 0;
   weekMarkersOutput = props.weekMarkers.map((weekMarker, week) => {
     const marginTop = (week - prevWeek - 1) * SC.totalSquareSize;
     const height = weekMarker.nWeeks * SC.totalSquareSize;
-    console.log(week, marginTop)
     const weekMarkerOutput = <div
       className={css(ST.weekMarker)}
       key={week}
-      style={{marginTop: marginTop < 0 ? 0 : marginTop, height: height}}
+      style={{
+        height: height,
+        marginTop: marginTop < 0 ? 0 : marginTop,
+      }}
     >
-      <div className={css(ST.weekMarkerTitle)}>
+      <div
+        className={css(ST.weekMarkerTitle)}
+        style={{
+          borderLeftColor: colors[curColor++],
+        }}
+      >
         {props.hideTitles ? '' : weekMarker.title}
       </div>
     </div>;
@@ -276,16 +288,18 @@ const ST = StyleSheet.create({
     listStyle: "disc",
   },
   // Week markers
-  weekMarkers: {
-    marginLeft: 3,
-  },
   weekMarker: {
     ...SS.accentText,
-    alignItems: "center",
-    borderLeft: `5px solid #ddd`,
-    display: "flex",
     lineHeight: `${SC.totalSquareSize}px`,
-    paddingLeft: 3,
+  },
+  weekMarkerTitle: {
+    alignItems: "center",
+    display: "flex",
+    borderLeftStyle: "solid",
+    borderLeftWidth: 5,
+    height: "100%",
+    margin: 2,
+    paddingLeft: 5,
   },
   // Months
   months: {
