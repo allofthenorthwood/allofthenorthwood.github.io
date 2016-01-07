@@ -125,7 +125,8 @@ const Months = (props) => {
 
 const Commits = (props) => {
   const commits = mathFactsCommitsByDay[props.day] || [];
-  const day = moment(`${props.day} 2015`, "DDD YYYY").format("dddd MMM D, YYYY")
+  const day = moment(`${props.day} 2015`, "DDD YYYY")
+    .format("dddd MMM D, YYYY");
   return <div className={css(ST.commits)}>
     <h3 className={css(ST.h3)}>Commits from {day}</h3>
     <ul className={css(ST.commitList)}>
@@ -183,19 +184,19 @@ const MathFactsYearCalendar = React.createClass({
       nWeeks: 1,
     };
     weekMarkers[moment("Oct 4 2015", format).week()] = {
-      title: "Test with KLS students every day",
+      title: "Daily user-testing with KLS students",
       nWeeks: 3,
     };
-    weekMarkers[moment("Oct 25 2015", format).week()] = {
-      title: "Another math facts follow-up meeting (Nov 4), and started working with Matt",
+    weekMarkers[moment("Oct 29 2015", format).week()] = {
+      title: "Refactor and start working with Matt to get ready to ship",
       nWeeks: 1,
     };
     weekMarkers[moment("Nov 1 2015", format).week()] = {
-      title: "Start blogging and writing down what happened with the math facts project",
+      title: "Start blogging about the math facts project",
       nWeeks: 2,
     };
     weekMarkers[moment("Nov 15 2015", format).week()] = {
-      title: "Set up test flight and make continuous improvements to the app",
+      title: "Set up test flight and make continuous app improvements",
       nWeeks: 2,
     };
     weekMarkers[moment("Dec 1 2015", format).week()] = {
