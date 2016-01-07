@@ -4,6 +4,7 @@ import moment from "moment";
 import React from "react";
 import { StyleSheet, css } from "../lib/aphrodite.js";
 
+import Icon from "../components/icon.js";
 import mathFactsCommits from "./math-facts-commits.js";
 import SS from "../styles/shared.js";
 
@@ -146,8 +147,8 @@ const Commits = (props) => {
 
 const WeekMarkers = (props) => {
   const colors = [
-    "#ff9797", "#ffc197", "#ffe597", "#fffb97", "#d9ff97", "#d9ff97",
-    "#a8ff97", "#97ffb7", "#97d4ff", "#bcacff", "#faa8ff",
+    "#E97575", "#FFC797", "#FFDF97", "#FFEB00", "#CBED66", "#93EB65",
+    "#6ADB92", "#3FE7D7", "#73BCEF", "#bcacff", "#faa8ff", "#FFA4B0",
   ];
   let curColor = 0;
   let prevWeek = 0;
@@ -168,7 +169,17 @@ const WeekMarkers = (props) => {
           borderLeftColor: colors[curColor++],
         }}
       >
-        {props.hideTitles ? '' : weekMarker.title}
+        {props.hideTitles ? '' : weekMarker.link ?
+          <a href={weekMarker.link} className={css(ST.weekMarkerLink)}>
+            {weekMarker.title}
+          </a> : weekMarker.title}
+        {weekMarker.link && <div className={css(ST.moreIcon)}>
+          <Icon
+            color={SS.color.green}
+            size={SC.totalSquareSize - 2}
+            type="angleBracketRight"
+          />
+        </div>}
       </div>
     </div>;
     prevWeek = week + (weekMarker.nWeeks - 1);
@@ -189,11 +200,18 @@ const MathFactsYearCalendar = React.createClass({
   componentWillMount: function() {
     const weekMarkers = [];
     const format = "MMM D YYYY";
+    weekMarkers[moment("Jan 1 2015", format).week()] = {
+      link: "/post/math-facts-part-1",
+      title: "Think about building an app to teach number sense",
+      nWeeks: 2,
+    };
     weekMarkers[moment("Apr 23 2015", format).week()] = {
+      link: "/post/math-facts-part-2",
       title: "Build prototype and submit project proposal",
       nWeeks: 1,
     };
     weekMarkers[moment("Apr 26 2015", format).week()] = {
+      link: "/post/math-facts-part-3",
       title: "5-week project: build basic functionality and test at KLS",
       nWeeks: 5,
     };
@@ -202,14 +220,17 @@ const MathFactsYearCalendar = React.createClass({
       nWeeks: 1,
     };
     weekMarkers[moment("Aug 20 2015", format).week()] = {
+      link: "/post/math-facts-part-4",
       title: "Math facts follow-up meeting (Aug 20)",
       nWeeks: 1,
     };
     weekMarkers[moment("Sep 27 2015", format).week()] = {
+      link: "/post/math-facts-part-5",
       title: "Add Firebase and internal download page",
       nWeeks: 1,
     };
     weekMarkers[moment("Oct 4 2015", format).week()] = {
+      link: "/post/math-facts-part-6",
       title: "Daily user-testing with KLS students",
       nWeeks: 3,
     };
@@ -231,7 +252,7 @@ const MathFactsYearCalendar = React.createClass({
     };
     weekMarkers[moment("Dec 15 2015", format).week()] = {
       title: "Start making this chart and writing this blog post",
-      nWeeks: 2,
+      nWeeks: 3,
     };
     this.weekMarkers = weekMarkers;
   },
@@ -290,7 +311,9 @@ const ST = StyleSheet.create({
   // Week markers
   weekMarker: {
     ...SS.accentText,
+    boxSizing: "border-box",
     lineHeight: `${SC.totalSquareSize}px`,
+    padding: 1,
   },
   weekMarkerTitle: {
     alignItems: "center",
@@ -298,8 +321,19 @@ const ST = StyleSheet.create({
     borderLeftStyle: "solid",
     borderLeftWidth: 5,
     height: "100%",
-    margin: 2,
     paddingLeft: 5,
+  },
+  weekMarkerLink: {
+    color: SS.color.black,
+    paddingRight: 2,
+    textDecoration: "none",
+    transition: "padding 0.2s",
+    ":hover": {
+      paddingRight: 5,
+    },
+  },
+  moreIcon: {
+    paddingTop: 2,
   },
   // Months
   months: {
