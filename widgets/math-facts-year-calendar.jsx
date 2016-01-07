@@ -148,14 +148,18 @@ const WeekMarkers = (props) => {
   let prevWeek = 0;
   weekMarkersOutput = props.weekMarkers.map((weekMarker, week) => {
     const marginTop = (week - prevWeek - 1) * SC.totalSquareSize;
+    const height = weekMarker.nWeeks * SC.totalSquareSize;
+    console.log(week, marginTop)
     const weekMarkerOutput = <div
       className={css(ST.weekMarker)}
       key={week}
-      style={{marginTop: marginTop < 0 ? 0 : marginTop}}
+      style={{marginTop: marginTop < 0 ? 0 : marginTop, height: height}}
     >
-      {props.hideTitles ? '' : weekMarker.title}
+      <div className={css(ST.weekMarkerTitle)}>
+        {props.hideTitles ? '' : weekMarker.title}
+      </div>
     </div>;
-    prevWeek = week;
+    prevWeek = week + (weekMarker.nWeeks - 1);
     return weekMarkerOutput;
   });
   return <div className={css(ST.weekMarkers)}>
@@ -273,12 +277,15 @@ const ST = StyleSheet.create({
   },
   // Week markers
   weekMarkers: {
-    marginLeft: 10,
+    marginLeft: 3,
   },
   weekMarker: {
     ...SS.accentText,
+    alignItems: "center",
+    borderLeft: `5px solid #ddd`,
+    display: "flex",
     lineHeight: `${SC.totalSquareSize}px`,
-    height: `${SC.totalSquareSize}px`,
+    paddingLeft: 3,
   },
   // Months
   months: {
