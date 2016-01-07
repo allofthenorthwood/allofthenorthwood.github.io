@@ -113,7 +113,7 @@ const Months = (props) => {
     monthOutput.push(<div
       className={css(ST.month)}
       key={i}
-      style={{marginTop: i === 0 ? 0 : marginTop}}
+      style={{marginTop: marginTop < 0 ? 0 : marginTop}}
     >
       {monthMoment.format("MMM")}
     </div>);
@@ -273,7 +273,7 @@ const ST = StyleSheet.create({
   month:{
     ...SS.accentText,
     lineHeight: `${SC.totalSquareSize}px`,
-    textTransform: "capitalize",
+    height: `${SC.totalSquareSize}px`,
   },
   // Days
   dateSquares: {
