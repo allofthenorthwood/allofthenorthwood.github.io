@@ -45,7 +45,7 @@ const _throttle = function(func, wait, options) {
 };
 
 const SC = {
-  squareSize: 12,
+  squareSize: 14,
   squarePadding: 1,
 };
 SC.totalSquareSize = SC.squareSize + 2 * SC.squarePadding;
@@ -203,6 +203,16 @@ const Commits = (props) => {
   const day = moment(`${props.day} 2015`, "DDD YYYY")
     .format("dddd MMM D, YYYY");
   return <div className={css(ST.commits)}>
+    <a
+      href="#"
+      className={css(ST.closeButton)}
+      onClick={(e) => {
+        e.preventDefault();
+        props.close();
+      }}
+    >
+      &times;
+    </a>
     <h3 className={css(ST.commitsTitle)}>Commits from {day}</h3>
     <ul className={css(ST.commitList)}>
     {commits.map((commit, idx) => {
@@ -278,7 +288,7 @@ const MathFactsYearCalendar = React.createClass({
     weekMarkers[moment("Jan 1 2015", format).week()] = {
       link: "/post/math-facts-part-1",
       title: "Think about building an app to teach number sense",
-      nWeeks: 2,
+      nWeeks: 3,
     };
     weekMarkers[moment("Apr 23 2015", format).week()] = {
       link: "/post/math-facts-part-2",
@@ -362,7 +372,10 @@ const MathFactsYearCalendar = React.createClass({
         setHoverDay={this.setHoverDay}
       />
       <WeekMarkers weekMarkers={this.weekMarkers} hideTitles={highlightDay}/>
-      {highlightDay && <Commits day={highlightDay}/>}
+      {highlightDay && <Commits
+        day={highlightDay}
+        close={() => {this.setActiveDay(null)}}
+      />}
     </div>;
   },
 });
@@ -370,23 +383,35 @@ const MathFactsYearCalendar = React.createClass({
 const ST = StyleSheet.create({
   wrapper: {
     display: "flex",
+    fontFamily: SS.font.sansFamily,
   },
   // Commits
   commits: {
+    border: `1px solid #ddd`,
     flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 10,
   },
   commitsTitle: {
     ...SS.accentText,
-    fontSize: SS.font.contentSize,
+    fontSize: SC.squareSize + 2,
   },
   commitList: {
     paddingLeft: "1em",
   },
   commit: {
-    fontSize: SS.font.mediumSize,
+    fontSize: SC.squareSize,
     listStyle: "disc",
+  },
+  closeButton: {
+    color: SS.color.greyLight,
+    float: "right",
+    lineHeight: 1,
+    textDecoration: "none",
+    ":hover": {
+      color: SS.color.grey,
+    },
   },
   // Week markers
   weekMarkers: {
@@ -396,7 +421,8 @@ const ST = StyleSheet.create({
   weekMarker: {
     ...SS.accentText,
     boxSizing: "border-box",
-    fontSize: 12,
+    color: SS.color.black,
+    fontSize: SC.squareSize,
     lineHeight: `${SC.totalSquareSize}px`,
     padding: 1,
     textTransform: "none",
@@ -407,20 +433,23 @@ const ST = StyleSheet.create({
     borderLeftStyle: "solid",
     borderLeftWidth: 5,
     height: "100%",
-    paddingLeft: 5,
+    paddingLeft: 4,
   },
   weekMarkerLink: {
     color: SS.color.black,
-    display: "inline-block",
+    display: "block",
     paddingRight: 2,
+    paddingTop: 2,
     textDecoration: "none",
     verticalAlign: "middle",
   },
   weekMarkerLinkText: {
-    paddingRight: 0,
-    transition: "padding 0.2s",
+    borderBottom: `1px solid #ddd`,
+    height: "100%",
+    marginRight: 0,
+    transition: "margin 0.2s",
     ":hover": {
-      paddingRight: 5,
+      marginRight: 5,
     },
   },
   moreIcon: {
