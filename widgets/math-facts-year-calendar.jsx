@@ -324,6 +324,7 @@ const MathFactsYearCalendar = React.createClass({
       nWeeks: 1,
     };
     weekMarkers[moment("Nov 1 2015", format).week()] = {
+      link: "/tag/math-facts",
       title: "Start blogging about the math facts project",
       nWeeks: 2,
     };
