@@ -389,20 +389,33 @@ const ST = StyleSheet.create({
   commits: {
     border: `1px solid #ddd`,
     flex: 1,
+    paddingBottom: 20,
     paddingLeft: 15,
     paddingRight: 15,
     paddingTop: 10,
+    [SS.queries.small]: {
+      padding: "5px 10px",
+    },
   },
   commitsTitle: {
     ...SS.accentText,
     fontSize: SC.squareSize + 2,
+    [SS.queries.small]: {
+      fontSize: SC.squareSize - 1,
+    },
   },
   commitList: {
     paddingLeft: "1em",
+    [SS.queries.small]: {
+      paddingLeft: "0.5em",
+    },
   },
   commit: {
     fontSize: SC.squareSize,
     listStyle: "disc",
+    [SS.queries.small]: {
+      fontSize: SC.squareSize - 3,
+    },
   },
   closeButton: {
     color: SS.color.greyLight,
@@ -461,11 +474,17 @@ const ST = StyleSheet.create({
   months: {
     marginRight: 5,
     textAlign: "right",
+    [SS.queries.small]: {
+      marginRight: 2,
+    },
   },
   month:{
     ...SS.accentText,
     lineHeight: `${SC.totalSquareSize}px`,
     height: `${SC.totalSquareSize}px`,
+    [SS.queries.small]: {
+      fontSize: SC.squareSize - 3,
+    },
   },
   // Days
   dateSquaresWrapper: {
