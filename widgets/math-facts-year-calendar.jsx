@@ -203,27 +203,29 @@ const Commits = (props) => {
   const day = moment(`${props.day} 2015`, "DDD YYYY")
     .format("dddd MMM D, YYYY");
   return <div className={css(ST.commits)}>
-    <a
-      href="#"
-      className={css(ST.closeButton)}
-      onClick={(e) => {
-        e.preventDefault();
-        props.close();
-      }}
-    >
-      &times;
-    </a>
-    <h3 className={css(ST.commitsTitle)}>Commits from {day}</h3>
-    <ul className={css(ST.commitList)}>
-    {commits.map((commit, idx) => {
-      const rawMessage = commit.commit.message;
-      const splitMessage = rawMessage.split("\n\n");
-      const message = splitMessage[0] ? splitMessage[0] : rawMessage;
-      return <li key={idx} className={css(ST.commit)}>
-        {message}
-      </li>
-    })}
-    </ul>
+    <div className={css(ST.commitsContent)}>
+      <a
+        href="#"
+        className={css(ST.closeButton)}
+        onClick={(e) => {
+          e.preventDefault();
+          props.close();
+        }}
+      >
+        &times;
+      </a>
+      <h3 className={css(ST.commitsTitle)}>Commits from {day}</h3>
+      <ul className={css(ST.commitList)}>
+      {commits.map((commit, idx) => {
+        const rawMessage = commit.commit.message;
+        const splitMessage = rawMessage.split("\n\n");
+        const message = splitMessage[0] ? splitMessage[0] : rawMessage;
+        return <li key={idx} className={css(ST.commit)}>
+          {message}
+        </li>
+      })}
+      </ul>
+    </div>
   </div>;
 };
 
@@ -388,12 +390,19 @@ const ST = StyleSheet.create({
   },
   // Commits
   commits: {
-    border: `1px solid #ddd`,
+    background: "#fafafa",
+    display: "flex",
     flex: 1,
-    paddingBottom: 20,
+  },
+  commitsContent: {
+    alignSelf: "center",
+    background: "#fff",
+    border: `1px solid #ddd`,
+    paddingBottom: 15,
     paddingLeft: 15,
     paddingRight: 15,
     paddingTop: 10,
+    width: "100%",
     [SS.queries.small]: {
       padding: "5px 10px",
     },
@@ -420,6 +429,7 @@ const ST = StyleSheet.create({
   },
   closeButton: {
     color: SS.color.greyLight,
+    flex: 0,
     float: "right",
     lineHeight: 1,
     textDecoration: "none",
