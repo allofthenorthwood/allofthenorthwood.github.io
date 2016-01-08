@@ -351,7 +351,6 @@ const MathFactsYearCalendar = React.createClass({
   }, 100),
 
   setActiveDay: function(day) {
-    console.log('setting active')
     this.setState({
       activeDay: day,
     });
