@@ -292,7 +292,7 @@ const MathFactsYearCalendar = React.createClass({
     };
     weekMarkers[moment("Apr 23 2015", format).week()] = {
       link: "/post/math-facts-part-2",
-      title: "Build prototype and submit project proposal",
+      title: "Build Math Facts prototype and write project proposal",
       nWeeks: 1,
     };
     weekMarkers[moment("Apr 26 2015", format).week()] = {
@@ -330,15 +330,15 @@ const MathFactsYearCalendar = React.createClass({
     };
     weekMarkers[moment("Nov 15 2015", format).week()] = {
       title: "Set up test flight and make continuous app improvements",
-      nWeeks: 2,
+      nWeeks: 3,
     };
-    weekMarkers[moment("Dec 1 2015", format).week()] = {
+    weekMarkers[moment("Dec 6 2015", format).week()] = {
       title: "Make plan for larger beta-testing rollout",
       nWeeks: 2,
     };
-    weekMarkers[moment("Dec 15 2015", format).week()] = {
+    weekMarkers[moment("Dec 20 2015", format).week()] = {
       title: "Start making this chart and writing this blog post",
-      nWeeks: 3,
+      nWeeks: 2,
     };
     this.weekMarkers = weekMarkers;
   },
