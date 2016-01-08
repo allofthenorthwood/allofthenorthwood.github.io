@@ -6,6 +6,7 @@ module.exports = [
     url: "../posts/math-facts-2015.md",
     tags: [
       "math facts",
+      "khan academy",
     ],
   },
   {
@@ -25,6 +26,7 @@ module.exports = [
     url: "../posts/math-facts-part-6.md",
     tags: [
       "math facts",
+      "khan academy",
     ],
   },
   {
@@ -43,6 +45,7 @@ module.exports = [
     url: "../posts/math-facts-part-5.md",
     tags: [
       "math facts",
+      "khan academy",
     ],
   },
   {
@@ -74,6 +77,7 @@ module.exports = [
     tags: [
       "advice",
       "drawings",
+      "khan academy",
     ],
   },
   {
@@ -94,6 +98,7 @@ module.exports = [
     url: "../posts/math-facts-part-4.md",
     tags: [
       "math facts",
+      "khan academy",
     ],
   },
   {
@@ -104,6 +109,7 @@ module.exports = [
     url: "../posts/math-facts-part-3.md",
     tags: [
       "math facts",
+      "khan academy",
     ],
   },
   {
@@ -114,6 +120,7 @@ module.exports = [
     url: "../posts/math-facts-part-2.md",
     tags: [
       "math facts",
+      "khan academy",
     ],
   },
   {
@@ -124,6 +131,7 @@ module.exports = [
     url: "../posts/math-facts-part-1.md",
     tags: [
       "math facts",
+      "khan academy",
     ],
   },
 ];
