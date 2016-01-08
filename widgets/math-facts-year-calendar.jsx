@@ -215,7 +215,10 @@ const Commits = (props) => {
         &times;
       </a>
       <h3 className={css(ST.commitsTitle)}>Commits from {day}</h3>
-      <ul className={css(ST.commitList)}>
+      {(commits.length == 0) && <div className={css(ST.noCommits)}>
+        (no commits on this day)
+      </div>}
+      {(commits.length > 0) && <ul className={css(ST.commitList)}>
       {commits.map((commit, idx) => {
         const rawMessage = commit.commit.message;
         const splitMessage = rawMessage.split("\n\n");
@@ -236,7 +239,7 @@ const Commits = (props) => {
           </a>
         </li>
       })}
-      </ul>
+      </ul>}
     </div>
   </div>;
 };
@@ -404,6 +407,9 @@ const ST = StyleSheet.create({
     background: "#fafafa",
     display: "flex",
     flex: 1,
+  },
+  noCommits: {
+    fontSize: SC.squareSize,
   },
   commitsContent: {
     alignSelf: "center",
