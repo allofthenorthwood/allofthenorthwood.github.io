@@ -221,7 +221,19 @@ const Commits = (props) => {
         const splitMessage = rawMessage.split("\n\n");
         const message = splitMessage[0] ? splitMessage[0] : rawMessage;
         return <li key={idx} className={css(ST.commit)}>
-          {message}
+          <a
+            className={css(ST.commitLink)}
+            href={`https://github.com/Khan/math-facts/commit/${commit.sha}`}
+          >
+            <span className={css(ST.commitLinkText)}>{message}</span>
+            <div className={css(ST.moreIcon)}>
+              <Icon
+                color={SS.color.green}
+                size={SC.totalSquareSize - 4}
+                type="angleBracketRight"
+              />
+            </div>
+          </a>
         </li>
       })}
       </ul>
@@ -424,6 +436,18 @@ const ST = StyleSheet.create({
     listStyle: "disc",
     [SS.queries.small]: {
       fontSize: SC.squareSize - 3,
+    },
+  },
+  commitLink: {
+    color: SS.color.black,
+    textDecoration: "none",
+  },
+  commitLinkText: {
+    borderBottom: `1px solid #ddd`,
+    marginRight: 2,
+    transition: "margin 0.2s",
+    ":hover": {
+      marginRight: 6,
     },
   },
   closeButton: {
