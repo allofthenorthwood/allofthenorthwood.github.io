@@ -82,6 +82,60 @@ const queries = {
   xlarge: '@media (min-width: 1024px)',
 };
 
+const displayFlex = {
+    display: "-ms-flexbox !important; " +
+        "display: -webkit-flex !important; " +
+        "display: flex",
+};
+
+const flex = (val) => {
+    return {
+        msFlex: val,
+        WebkitFlex: val,
+        flex: val,
+    };
+};
+
+const justifyContent = (val) => {
+    return {
+        MsFlexPack: val,
+        WebkitJustifyContent: val,
+        justifyContent: val,
+    };
+};
+
+const alignItems = (val) => {
+    return {
+        MsFlexAlign: val,
+        WebkitAlignItems: val,
+        alignItems: val,
+    };
+};
+
+const alignSelf = (val) => {
+    return {
+        MsFlexAlign: val,
+        WebkitAlignItems: val,
+        alignItems: val,
+    };
+};
+
+const flexDirection = (val) => {
+    return {
+        MsFlexDirection: val,
+        WebkitFlexDirection: val,
+        flexDirection: val,
+    };
+};
+
+const flexWrap = (val) => {
+    return {
+        MsFlexWrap: val,
+        WebkitFlexWrap: val,
+        flexWrap: val,
+    };
+};
+
 module.exports = {
   accentText,
   color,
@@ -90,4 +144,12 @@ module.exports = {
   layout,
   link,
   queries,
+
+  displayFlex,
+  flex,
+  alignItems,
+  alignSelf,
+  justifyContent,
+  flexDirection,
+  flexWrap,
 };

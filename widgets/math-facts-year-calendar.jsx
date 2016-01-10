@@ -263,10 +263,12 @@ const WeekMarkers = (props) => {
       }}
     >
       <div
-        className={css(ST.weekMarkerTitle)}
+        className={css(
+          ST.weekMarkerTitle,
+          props.hideTitles && ST.weekMarkerTitleSmall
+        )}
         style={{
           borderLeftColor: colors[curColor++],
-          flex: props.hideTitles ? 0 : 1,
         }}
       >
         {props.hideTitles ? '' : weekMarker.link ?
@@ -399,27 +401,27 @@ const MathFactsYearCalendar = React.createClass({
 
 const ST = StyleSheet.create({
   wrapper: {
-    display: "flex",
+    ...SS.displayFlex,
     fontFamily: SS.font.sansFamily,
   },
   // Commits
   commits: {
     background: "#fafafa",
-    display: "flex",
-    flex: 1,
+    ...SS.displayFlex,
+    ...SS.flex(1),
+    ...SS.flexDirection("column"),
+    ...SS.justifyContent("center"),
   },
   noCommits: {
     fontSize: SC.squareSize,
   },
   commitsContent: {
-    alignSelf: "center",
     background: "#fff",
     border: `1px solid #ddd`,
     paddingBottom: 15,
     paddingLeft: 15,
     paddingRight: 15,
     paddingTop: 10,
-    width: "100%",
     [SS.queries.small]: {
       padding: "5px 10px",
     },
@@ -458,7 +460,7 @@ const ST = StyleSheet.create({
   },
   closeButton: {
     color: SS.color.greyLight,
-    flex: 0,
+    ...SS.flex(0),
     float: "right",
     lineHeight: 1,
     textDecoration: "none",
@@ -481,12 +483,16 @@ const ST = StyleSheet.create({
     textTransform: "none",
   },
   weekMarkerTitle: {
-    alignItems: "center",
-    display: "flex",
+    ...SS.alignItems("center"),
     borderLeftStyle: "solid",
     borderLeftWidth: 5,
+    ...SS.displayFlex,
+    ...SS.flex(1),
     height: "100%",
     paddingLeft: 4,
+  },
+  weekMarkerTitleSmall: {
+    ...SS.flex(0),
   },
   weekMarkerLink: {
     color: SS.color.black,
@@ -528,16 +534,16 @@ const ST = StyleSheet.create({
   },
   // Days
   dateSquaresWrapper: {
-    flex: 0,
+    ...SS.flex(0),
     minWidth: SC.dateSquaresWidth,
   },
   dateSquares: {
-    display: "flex",
-    flexWrap: "wrap",
+    ...SS.displayFlex,
+    ...SS.flexWrap("wrap"),
     lineHeight: `${SC.squareSize}px`,
   },
   dateSquareWrapper: {
-    flex: 0,
+    ...SS.flex(0),
     lineHeight: `${SC.totalSquareSize}px`,
     padding: SC.squarePadding,
   },
