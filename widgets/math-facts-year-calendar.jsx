@@ -543,7 +543,6 @@ const ST = StyleSheet.create({
     lineHeight: `${SC.squareSize}px`,
   },
   dateSquareWrapper: {
-    ...SS.flex(0),
     lineHeight: `${SC.totalSquareSize}px`,
     padding: SC.squarePadding,
   },
