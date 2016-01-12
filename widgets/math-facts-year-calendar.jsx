@@ -471,7 +471,7 @@ const ST = StyleSheet.create({
   // Week markers
   weekMarkers: {
     whiteSpace: "nowrap",
-    overflow: "hidden",
+    overflowX: "auto",
   },
   weekMarker: {
     ...SS.accentText,
@@ -519,6 +519,7 @@ const ST = StyleSheet.create({
   // Months
   months: {
     marginRight: 5,
+    minWidth: 25,
     textAlign: "right",
     [SS.queries.small]: {
       marginRight: 2,
