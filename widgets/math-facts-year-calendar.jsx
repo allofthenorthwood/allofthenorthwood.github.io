@@ -379,7 +379,6 @@ const MathFactsYearCalendar = React.createClass({
       activeDay,
       hoverDay,
     } = this.state;
-    // TODO: only re-render the things that change
     const highlightDay = activeDay ? activeDay : hoverDay;
     return <div className={css(ST.wrapper)}>
       <Months startDate={startDate} />
