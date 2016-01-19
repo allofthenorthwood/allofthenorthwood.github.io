@@ -34,6 +34,13 @@ const Blog = React.createClass({
       }
     });
 
+    const corgiImages = [
+      'corgi', 'corgi-sitting', 'corgi-bone', 'corgi-upsidedown'
+    ];
+    const corgiImage = corgiImages[
+      Math.floor(Math.random() * corgiImages.length)
+    ];
+
     return <div>
       <div className={css(ST.alignContent)}>
         {params.tag != null && <HomeButton />}
@@ -69,6 +76,13 @@ const Blog = React.createClass({
             <PostSummary post={post} />
           </div>;
         })}
+      </div>
+      <div className={css(ST.footerContent)}>
+        <img
+          src={`../images/${corgiImage}.jpg`}
+          alt=""
+          className={css(ST.corgiImage)}
+        />
       </div>
     </div>;
   },
@@ -124,6 +138,13 @@ const ST = StyleSheet.create({
     color: SS.color.greyLight,
     fontSize: SS.font.largeSize,
     textAlign: "center",
+  },
+  footerContent: {
+    marginBottom: 100,
+    textAlign: "center",
+  },
+  corgiImage: {
+    maxWidth: 150,
   },
 });
 
